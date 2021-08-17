@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&family=Style+Script&display=swap');
+
+
+h1 {
+    color: darkblue;
+   font-family: roboto;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+p {
+    color: darkcyan;
+    font-size: 40px;
+}
+
+h2 {
+    color: aqua;
+    font-family: 'Style Script', cursive;;
+}
+
+p {
+    color: brown;
+    font-size: 20px;
+}
+
+img {
+    width: 200px;
+    box-shadow: 3px 3px 8px darkred;
+    margin: 10px;
+}
+
+.img-div {
+    background-color: lightsalmon;
+
+}
+
+.img-light {
+    background-color: lightskyblue;
+}
+
+#bioHeader {
+    color: darkgreen;
+}
+.bold {
+    font-weight: bold;
+}
+.img div {
+    background-color: green;
+}
+h3 {
+    color: blueviolet;
+    font-size: 20px;
+}
