@@ -19,3 +19,5 @@ function showSumPrice(price, amountNumber) {
         showAmount.innerHTML = amount;
     }
 }
+
+// comment
