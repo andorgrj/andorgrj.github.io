@@ -1,0 +1,64 @@
+body {
+    background-color: #f0f0f0;
+}
+
+.login-div {
+    padding: 15px;
+    border: solid 1px rgb(8, 12, 1);
+    box-shadow: 0 0 5px red;
+    display: inline-block;
+    text-align: center;
+}
+
+.login-div input {
+    display: block;
+    margin-bottom: 7px;
+}
+
+[type=email] {
+    background: rgb(145, 189, 57);
+    border: solid 2px black;
+}
+
+[type=password] {
+    background: rgb(209, 97, 17);
+    border: solid 2px black;
+}
+
+[type=login] {
+    border: 100px black; 
+    padding: 100px;
+    box-shadow: 0 0 3px;
+}
+
+[type=submit-btn] {
+    background: rgb(196, 107, 44);
+    border: solid 2px black;
+    padding: 20px;
+}
+
+input[class="form group"] {
+    background: red;
+}
+
+.login-div input:focus {
+    box-shadow: 2px 2px 3px blueviolet;
+    border: none;
+}
+
+ul li:last-child {
+    text-decoration: underline;
+}
+
+ul li:first-child {
+    
+    color: blueviolet
+}
+
+ul li:nth-child(2) {
+    color: chartreuse;
+}
+
+.login-div button:hover {
+    background-color: chartreuse;
+}

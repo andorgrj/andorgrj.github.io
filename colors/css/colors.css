@@ -1,0 +1,13 @@
+#colorDiv {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-color: rgb(0, 0, 255, 0.158)
+}
+
+html {
+    background-color: #c0C0C0;
+    background-image: url("");
+    background-position: left top;
+    background-repeat: repeat-y;
+}

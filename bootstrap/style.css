@@ -1,0 +1,51 @@
+body {
+    background-color: #ddf0e6;
+
+}
+
+img {
+    display: block; 
+    margin-left: auto;
+    margin-right: auto;
+    width: 310px;
+}
+
+h1 {
+    text-align: center;
+    text-transform: uppercase;
+    color: brown;
+}
+
+h3 {
+    padding: 10px;
+    color: darkred
+}
+
+[type=email] {
+    background: darkturquoise;
+    display: block;
+}
+
+[type=password] {
+    background: rgb(141, 38, 69);
+    display: block;
+}
+.login-div button:hover {
+    background-color: fuchsia;
+}
+[type=text1] {
+    background: dodgerblue;
+    display: block;
+}
+[type=email1] {
+    background: dodgerblue;
+    display: block;
+}
+[type=text2] {
+    background: dodgerblue;
+    display: block;
+}
+[type=comment] {
+    background: dodgerblue;
+    display: block;
+}

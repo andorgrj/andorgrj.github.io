@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Megrendelés</title>
+</head>
+<body>
+</body>
+</html>
+<div class="container">
+    <form>
+        <fieldset>
+            <legend>Személyes adatok</legend>
+            <div>
+                <label for="name">Név: *</label>
+                <input id="name" name="name" type="text" required>
+            </div>
+            <div>
+                <label for="email">Email cím: *</label>
+                <input id="email" name="email" type="email" required>
+            </div>
+            <div>
+                <label for="address">Cím: *</label>
+                <input id="address" name="address" type="text" required>
+            </div>
+            <div>
+                <label for="comment">Megjegyzés:</label>
+                <textarea id="comment" name="comment" rows="5"></textarea>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Termék adatok</legend>
+            <span>Extra rátét:</span>
+            <div>
+                <input checked id="nothing" name="extra" type="radio" value="0">
+                <label for="nothing">Nem kérek</label>
+            </div>
+                <input checked id="cheese" name="extra" type="radio" value="300">
+                <label for="cheese">rátét 1</label>
+            <div>
+                <input checked id="répa" name="extra" type="radio" value="500">
+                <label for="nothing">rátét 2</label>      
+        </fieldset>
+        </div>
+    </form>
+</div>
