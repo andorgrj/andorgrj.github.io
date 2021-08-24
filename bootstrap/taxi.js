@@ -1,5 +1,5 @@
 function calcAmount() {
-    let price = 1000;
+    let price = 500;
     let amountInput = document.querySelector("input[name='amount input']") ;
     let amountNumber = parseInt(amountInput.value)
     amountNumber = isNaN(amountNumber) ? 0 : amountNumber;
@@ -8,28 +8,20 @@ function calcAmount() {
 }
 
 function showSumPrice(price, amountNumber) {
-    let shippingFee = 0;
+    let startFee = 0;
     let showAmount = document.querySelector("span.show-amount") ;
 
     if ( amountNumber > 1 ){
-        shippingFee = 500; 
+        startFee = 500; 
     }
 
-    if ( amountNumber > 10 ) {
-        alert("Maximum 10 kaja lehet!") ;
+    if ( amountNumber > 50 ) {
+        alert("Messzire mész!") ;
         return;
-    } else if ( amountNumber < 1 ) {
-        alert("Minimum 1 kaját kell venni!") ;
+    } else if ( amountNumber < 5 ) {
+        alert("Minimum menj 5 km-t!") ;
     } else {
-        let amount = amountNumber * price + shippingFee;
+        let amount = amountNumber * price + startFee;
         showAmount.innerHTML = amount;
-        console.log(`az árucikk megrendelése postaköltséggel együtt: ${amount}`) ;
-    }
+    }    
 }
-
-
-function imiCica() {
-    return 67 - 2
-}
-
-console.log(`eredmény: ${imiCica()}`) ;
