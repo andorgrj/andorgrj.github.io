@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
 
     <div class="container">
@@ -16,16 +18,22 @@
                 <form action="">
                     <div class="form group">
                         <label for="">Név, ki megy</label>
-                        <input type="text" name="name input" class="form-control" value= "Neved">
+                        <input type="text" name="name input" class="form-control" value="Neved">
                     </div>
                     <div class="form-group">
                         <label for="">Hány kilométer</label>
-                        <input type="number" name="amount input" class="form-control" value= "1"> 
-                     </div>
-                     <div class="form-group">
+                        <input type="number" name="amount input" class="form-control" value="1">
+                    </div>
+                    <div class="form-group">
                         Fizetendő: <span class="show-amount">0</span>Ft
-                        </div>
-                     <button onclick="calcAmount()" type="button" class="btn btn-primary">Kell</button>
+                    </div>
+                    <div class="form-group">
+                        Gumikopás: <span class="show-tyre"></span> %
+                    </div>
+                    <div class="form-group">
+                        Üzemanyagfogyás: <span class="show-gas"></span> l
+                    </div>
+                    <button onclick="calcAmount()" type="button" class="btn btn-primary">Kell</button>
                 </form>
             </div>
             <div class="col-3"></div>
@@ -35,4 +43,5 @@
     <script src="taxi.js"></script>
 
 </body>
+
 </html>
