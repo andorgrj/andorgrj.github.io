@@ -1,0 +1,32 @@
+body {
+    background-color: #e6fff1;
+
+}
+
+
+h3 {
+    padding: 10px;
+    color: rgb(0, 38, 255)
+}
+
+
+[type=number] {
+    background: darkturquoise;
+    display: block;
+}
+
+[type=class] {
+    background: rgb(141, 38, 69);
+    display: block;
+}
+
+[type=button] {
+    background: rgb(111, 252, 123);
+    display: block;
+    
+}
+
+
+.login-div button:hover {
+    background-color: fuchsia;
+}

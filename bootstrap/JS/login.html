@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" 
     <li>
-        <a class="nav-link" href="/bt.html">Home</a>
+        <a class="nav-link" href="bt.html">Home</a>
     </li> 
         
     </title>
@@ -38,6 +38,37 @@
             <div class="col-4"></div>
         </div>
     </div>
+
+    <section>
+        <form action="html5_select_1.php" method="post">
+            <select name="select1" size=”3”>
+                <option value="hétfő" selected>hétfő</option>
+                <option value="kedd">kedd</option>
+                <option value="szerda">szerda</option>
+                <option value="csütörtök">csütörtök</option>
+                <option value="péntek">péntek</option>
+                <option value="szombat">szombat</option>
+                <option value="vasárnap">vasárnap</option>
+            </select>
+            <select name="select2" size=”1”>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4" selected>4</option>
+            </select>
+            <p>
+                <button onclick="send()" type="button" class="btn btn-primary">Küldés</button>
+            </p>
+            
+    
+        </form>
+    
+    
+    </section>
+
+
+
+
 </body>
 
 </html>

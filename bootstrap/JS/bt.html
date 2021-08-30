@@ -25,13 +25,13 @@
                         <a class="nav-link active" aria-current="page" href="bt.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/about.html">About</a>
+                        <a class="nav-link" href="about2.html">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/login.html">Login</a>
+                        <a class="nav-link" href="login.html">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/contact.html">Contact</a>
+                        <a class="nav-link" href="contact.html">Contact</a>
                     </li>
                 </ul>
                 <form class="d-flex">
@@ -47,21 +47,28 @@
             <div class="col-3"></div>
             <div class="col-3">
                 <h3>Kaja rendelés</h3>
-                <form action="">
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <strong>Kedves látogató!</strong> 
+                    Rendeléshez töltse ki az űrlapot.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <form id ="orderForm" action="">
                     <div class="form group">
                         <label for="">Feltét</label>
-                        <input type="text" name="top input" class="form-control"> 
+                        <select id="topInput" name="top input" class="form-control">
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="">Mennyiség</label>
-                        <input type="number" name="amount input" class="form-control" value= "1"> 
+                        <input id="amountInput" type="number" name="amount input" class="form-control" placeholder="Add meg a mennyiséget";> 
                         <small class="form-text text muted">
                             Minimum 1, maximum 10 db
                         </small>
                      </div>
-                     <div class="form-group">
+                     <div id="stex" class="form-group">
                         Fizetendő: <span class="show-amount">0</span>Ft
                         </div>
+                        <p></p>
                      <button onclick="calcAmount()" type="button" class="btn btn-primary">Kell</button>
                 </form>
             </div>
@@ -71,7 +78,9 @@
 
     <!-- <script src="js/main.js"></script> -->
     <!-- <script src="js/scope.js"></script> -->
-    <script src="algo.js"></script>
+    <script src="main.js"></script>
+    
+
 </body>
 
 </html>
