@@ -9,10 +9,16 @@ function calcAmount() {
 
 function showSumPrice(price, amountNumber) {
     let shippingFee = 0;
+    let toppings = 200;
     let showAmount = document.querySelector("span.show-amount") ;
 
     if ( amountNumber < 5 ){
         shippingFee = 500; 
+    }
+
+    if ( amountNumber < 1){
+        toppings = 200;
+
     }
 
     if ( amountNumber > 10 ) {
@@ -21,44 +27,48 @@ function showSumPrice(price, amountNumber) {
     } else if ( amountNumber < 1 ) {
         alert("Minimum 1 kaját kell venni!") ;
     } else {
-        let amount = amountNumber * price + shippingFee;
+        let amount = amountNumber * price + shippingFee + toppings;
         showAmount.innerHTML = amount;
         alert(`az árucikk megrendelése postaköltséggel együtt: ${amount}`) ;
     }
 }
 
 // Bootstrap gombra kattintva bezárható a teljes alert szülő elemre
-let alertCloseButtons = document.querySelectorAll(".btn-close[data-bs-dismiss='alert']");
+let alertCloseButton = document.querySelectorAll(".btn-close[data-bs-dismiss='alert']");
 let alertCloseEventHandlerFunction = function(ev) { 
     this.parentElement.style.display = "none";
 };
-for (let i = 0; i < alertCloseButtons.length; i++) {
-    alertCloseButtons[i].addEventListener("click", alertCloseEventHandlerFunction);
+for (let i = 0; i < alertCloseButton.length; i++) {
+    alertCloseButton[i].addEventListener("click", alertCloseEventHandlerFunction);
 }
 
 
+
+
+
+
 // Select elem kitöltése.
+
 let toppings = [
     "hagyma",
     "uborka",
     "répa",
+    "narancs",
 ];
 let toppingSelect = document.querySelector("#topInput");
 let index =0;
+
 while(index < toppings.length) {
+
     let option = document.createElement("option");
     option.value = toppings[index];
     option.innerHTML = toppings[index];
     toppingSelect.appendChild(option);
     index++;
-
+    
 }
 
 
-
-
-
-/* HTML elemek módosítása JS-ból */
 Element.prototype.setProto = function () {
     this.style.border = "solid 2px blue";
 }
