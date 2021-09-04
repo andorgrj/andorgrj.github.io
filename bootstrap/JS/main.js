@@ -33,7 +33,7 @@ function showSumPrice(price, amountNumber) {
     }
 }
 
-// Bootstrap gombra kattintva bezárható a teljes alert szülő elemre
+// Bootstrap gombra kattintva bezárható a teljes alert szülő elem
 let alertCloseButton = document.querySelectorAll(".btn-close[data-bs-dismiss='alert']");
 let alertCloseEventHandlerFunction = function(ev) { 
     this.parentElement.style.display = "none";
