@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="gyak2.css">
+</head>
+<body>
+    <li class="nav-item">
+        <a class="nav-link" href="gyak2.html">Home</a>
+    </li>
+    <div class="container">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <h3 id="főcím">Kiválasztott termék megrendelése</h3>
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <strong>Kedves látogató!</strong> 
+                    Rendeléshez töltse ki az űrlapot.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <form id ="orderForm" action="">
+                    <div class="form group">
+                        <label for="">Feltét</label>
+                        <select id="topInput" name="top input" class="form-control">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Mennyiség</label>
+                        <input id="amountInput" type="number" name="amount-input" class="form-control" placeholder="Add meg a mennyiséget"> 
+                        <small class="form-text text muted">
+                            Minimum 1, maximum 10 db
+                        </small>
+                     </div>
+                     <div id="stex" class="form-group">
+                        Fizetendő: <span class="show-amount">0</span>Ft
+                        </div>
+                        <p></p>
+                     <button onclick="calcAmount()" type="button" class="btn btn-primary">Kell</button>
+                </form>
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </div>
+
+
+    <script src="gyak2.js"></script>
+
+</body>
+</html>

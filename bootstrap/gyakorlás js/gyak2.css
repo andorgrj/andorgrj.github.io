@@ -1,0 +1,21 @@
+.row {
+    margin-top: 40px;
+}
+
+#főcím {
+    margin-top: 40px;
+    margin-left: 50px;    
+}
+
+#boritokep {
+    border: solid 4px; 
+    border-color: rgb(2, 90, 46);
+    border-style: groove;
+    margin-left: 50px;
+    margin-top: 45px;
+}
+
+#nyomd-meg {
+    background-color: rgb(117, 192, 43);
+    
+}
