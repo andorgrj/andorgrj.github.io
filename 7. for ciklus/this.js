@@ -13,3 +13,7 @@ console.log(user.sayHi())
 
 
 
+let btn = document.querySelector('form button.btn-primary')
+btn.onclick = function() {
+    console.log( this.style.display = "none" ) ;
+}
