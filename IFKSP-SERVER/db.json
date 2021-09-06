@@ -1,19 +1,10 @@
 {
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
+  "users": [
+    {"id": 1, "name": "Big Tom", "email": "bigtom@gmail.com"},
+    {"id": 2, "name": "Little Jimmy", "email": "littlejimmy@gmail.com"},
+    {"id": 3, "name": "Mid John ", "email": "midjohn@gmail.com"}
   ],
   "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+    {"id":1, "body": "some Comment", "userId": 1}
+  ]
 }

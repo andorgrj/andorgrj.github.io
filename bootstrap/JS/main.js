@@ -44,9 +44,6 @@ for (let i = 0; i < alertCloseButton.length; i++) {
 
 
 
-
-
-
 // Select elem kitöltése.
 
 let toppings = [
