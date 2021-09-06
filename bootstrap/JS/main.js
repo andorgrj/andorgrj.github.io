@@ -43,6 +43,16 @@ for (let i = 0; i < alertCloseButton.length; i++) {
 }
 
 
+// Elem hozzáadása szülő elemhez gyerekként js-ben
+let elemHozzáadás = document.createElement("small");
+elemHozzáadás.className = "form-text text muted";
+elemHozzáadás.innerHTML = "Válaszd ki a feltéteket a listából";
+
+let parent = document.querySelector("div#toppings.form.group");
+parent.appendChild(elemHozzáadás);
+
+
+
 
 // Select elem kitöltése.
 
