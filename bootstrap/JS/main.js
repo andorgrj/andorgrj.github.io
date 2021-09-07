@@ -29,18 +29,20 @@ function showSumPrice(price, amountNumber) {
     } else {
         let amount = amountNumber * price + shippingFee + toppings;
         showAmount.innerHTML = amount;
-        alert(`az árucikk megrendelése postaköltséggel együtt: ${amount}`) ;
+        alert(`az árucikk megrendelése postaköltséggel együtt: ${amount}`);
     }
 }
 
 // Bootstrap gombra kattintva bezárható a teljes alert szülő elem
 let alertCloseButton = document.querySelectorAll(".btn-close[data-bs-dismiss='alert']");
-let alertCloseEventHandlerFunction = function(ev) { 
+let alertCloseEventHandlerFunction = function() { 
     this.parentElement.style.display = "none";
 };
 for (let i = 0; i < alertCloseButton.length; i++) {
     alertCloseButton[i].addEventListener("click", alertCloseEventHandlerFunction);
 }
+
+
 
 
 // Elem hozzáadása szülő elemhez gyerekként js-ben
@@ -50,11 +52,43 @@ elemHozzáadás.innerHTML = "Válaszd ki a feltéteket a listából";
 
 let parent = document.querySelector("div#toppings.form.group");
 parent.appendChild(elemHozzáadás);
+//parent.removeChild(elemHozzáadás); így törölhető a hozzáadott elem
+
+let fizetendőText = document.createElement("small");
+fizetendőText.className = "form-text text muted";
+fizetendőText.innerHTML = "Ez a végösszeg";
+
+let parent2 = document.querySelector("div#stex.form-group");
+parent2.appendChild(fizetendőText);
 
 
 
 
-// Select elem kitöltése.
+
+
+//Kell gombra kattintva alert üzenet jön fel (így csak egy funkciót tudok hozzáadni a gomb nyomásához, mert az esetleges többi gombfunkciót felülírom az = jellel!!!)
+/* let sendButton = document.querySelector("button.btn.btn-primary");
+sendButton.onclick = function() {
+    alert ("Rendelés folyamatban");
+} */
+
+//ADDEVENTLISTENER - arra lesz jó itt, hogy ezzel a metódussal több funkciót lehet a gomb nyomásához kapcsolni!!!
+// addeventlistenerrel nem kell az on elé, csak az eredeti eseményneve(pl. click)
+let sendButton = document.querySelector("button.btn.btn-primary"); 
+sendButton.addEventListener("click", function() {
+    alert("Rendelés folyamatban");
+});
+
+window.addEventListener("resize", function() {      // itt átméretezést figyel
+    console.log(this.innerWidth, this.innerHeight);
+});
+
+
+
+
+
+
+// Select elem kitöltése:
 
 let toppings = [
     "hagyma",
@@ -76,6 +110,9 @@ while(index < toppings.length) {
 }
 
 
+
+
+
 Element.prototype.setProto = function () {
     this.style.border = "solid 2px blue";
 }
@@ -94,11 +131,16 @@ Element.prototype.setProto = function () {
     document.querySelector("#stex").setProto()
 
 
+
+
 /* Több elem módosítása egyszerre ciklussal */
 let myNodeList = document.querySelectorAll("input");
     for (let i = 0 ; i < myNodeList.length; i++) {
         myNodeList[i].style.backgroundColor = "lightblue";
     }
+
+
+
 
 /* Több elem módosítása külön fügvénnyel */
 function massModify (selector, attribute, value) {
@@ -107,8 +149,8 @@ function massModify (selector, attribute, value) {
         nodeList[i][attribute] = value;
     }
 }
-
 massModify("input", "placeholder", "érték" )
+
 
 
 
