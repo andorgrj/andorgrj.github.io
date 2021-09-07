@@ -78,7 +78,7 @@ window.addEventListener("resize", function() {      // itt átméretezést figye
 
 
 
-// Bootstrap gombra kattintva bezárható a teljes alert szülő elem
+// Gombra kattintva bezárható a teljes alert gomb szülő elem 
 let alertCloseButton = document.querySelectorAll(".btn-close[data-bs-dismiss='alert']");
 let alertCloseEventHandlerFunction = function() { 
     this.parentElement.style.display = "none";
@@ -134,7 +134,7 @@ while(index < toppings.length) {
 
 
 Element.prototype.setProto = function () {
-    this.style.border = "solid 2px blue";
+    this.style.border = "solid 2px pink";
 }
     document.querySelector("select#topInput").setProto()
 
@@ -149,6 +149,11 @@ Element.prototype.setProto = function () {
     this.style.border = "solid 4px green";
 }
     document.querySelector("#stex").setProto()
+
+Element.prototype.setProto = function () {
+    this.style.border = "solid 2px yellow";
+}
+    document.querySelector("#gomb").setProto()
 
 
 
