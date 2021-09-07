@@ -33,19 +33,10 @@ function showSumPrice(price, amountNumber) {
     }
 }
 
-// Bootstrap gombra kattintva bezárható a teljes alert szülő elem
-let alertCloseButton = document.querySelectorAll(".btn-close[data-bs-dismiss='alert']");
-let alertCloseEventHandlerFunction = function() { 
-    this.parentElement.style.display = "none";
-};
-for (let i = 0; i < alertCloseButton.length; i++) {
-    alertCloseButton[i].addEventListener("click", alertCloseEventHandlerFunction);
-}
 
 
 
-
-// Elem hozzáadása szülő elemhez gyerekként js-ben
+// Elem hozzáadása szülő elemhez gyerekként js-en keresztül
 let elemHozzáadás = document.createElement("small");
 elemHozzáadás.className = "form-text text muted";
 elemHozzáadás.innerHTML = "Válaszd ki a feltéteket a listából";
@@ -87,6 +78,35 @@ window.addEventListener("resize", function() {      // itt átméretezést figye
 
 
 
+// Bootstrap gombra kattintva bezárható a teljes alert szülő elem
+let alertCloseButton = document.querySelectorAll(".btn-close[data-bs-dismiss='alert']");
+let alertCloseEventHandlerFunction = function() { 
+    this.parentElement.style.display = "none";
+};
+for (let i = 0; i < alertCloseButton.length; i++) {
+    alertCloseButton[i].addEventListener("click", alertCloseEventHandlerFunction);
+}
+
+
+
+
+
+
+// Űrlap elemek kezelése addeventlistenerrel
+/* let orderForm = document.querySelector("#orderForm");
+orderForm.addEventListener("Submit", function(ev) { //Submitra át kell írni a gomb típusát html-ben
+    ev.preventDefault();
+
+let inputs = document.querySelectorAll("input");
+let values = {};
+for (let i = 0; i < inputs.length; i++); {
+    values[inputs[i].name] = inputs[i].value;
+}
+    console.log(values);
+}); */
+
+
+
 
 // Select elem kitöltése:
 
@@ -116,7 +136,7 @@ while(index < toppings.length) {
 Element.prototype.setProto = function () {
     this.style.border = "solid 2px blue";
 }
-    document.querySelector("input#topInput").setProto()
+    document.querySelector("select#topInput").setProto()
 
 
 Element.prototype.setProto = function () {
@@ -153,11 +173,6 @@ massModify("input", "placeholder", "érték" )
 
 
 
-
-let orderForm = document.querySelector("#orderForm");
-orderForm.addEventListener("Submit", function(ev) {
-    ev.preventDefault();
-})
 
 
 

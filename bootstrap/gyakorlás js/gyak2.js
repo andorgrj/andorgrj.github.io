@@ -17,3 +17,6 @@ function calcAmount() {
     let végÖsszeg = beirtDbSzam.value * ár;
     összegMutatas.innerHTML = végÖsszeg;
 } 
+
+
+
