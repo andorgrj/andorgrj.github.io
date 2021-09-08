@@ -20,3 +20,7 @@ function calcAmount() {
 
 
 
+let myAlert = document.getElementById("#alert");
+myAlert.addEventListener('closed.bs.alert', function () {
+    close.bs.alert(myAlert)
+})
