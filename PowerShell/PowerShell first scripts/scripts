@@ -112,3 +112,14 @@ $a = 10
 $b = 10
 $c = $a + $b
 Write-Host $c
+
+
+
+
+
+$a = "Szia"
+$b = " Andor vagyok"
+$c = Get-Date
+$d = "Andor" 
+write-Host ($a + $b)
+Write-Host "$a" -ForegroundColor Green -BackgroundColor red $d
