@@ -123,3 +123,19 @@ $c = Get-Date
 $d = "Andor" 
 write-Host ($a + $b)
 Write-Host "$a" -ForegroundColor Green -BackgroundColor red $d
+
+
+
+
+
+
+Környezeti változó hozzáadása
+
+$env:valamivaltozo = "valamiertek"
+meglévő bővítése
+$env:Path += ";C:\aa"
+
+Rendszer szintű (.net objektumrendszer használatával)
+[System.Environment]::SetEnvironmentVariable('valamivaltozo','valamiertek')
+
+How to set environment variables using powershell
