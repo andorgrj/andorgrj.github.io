@@ -43,3 +43,9 @@ $name | Out-File -FilePath $filePath -Append
 $info | Out-File -FilePath $filePath -Append
 $result1 | Out-File -FilePath $filePath -Append
 $result2 | Out-File -FilePath $filePath -Append
+
+
+Get-CimInstance -Class Win32_LogicalDisk
+
+Get-CimInstance -Class Win32_LogicalDisk | Select-Object Size,Freespace | Out-File -FilePath $filePath
+$filePath = "$env:USERPROFILE\Desktop\size.txt"
