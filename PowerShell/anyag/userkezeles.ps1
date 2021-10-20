@@ -2,6 +2,9 @@ $csvutvonal = "C:\Users\Admin\ifksp\RM\users.csv"
 
 IF (Test-Path -Path $csvutvonal) {
     $csvtartalom = Import-Csv -Path $csvutvonal
+    ForEach {$felhasznalo in $csvtartalom} {
+        Write-Host $felhasznalo.Name
+    }
 }
 $csvtartalom.Name
 $csvtartalom.Description
@@ -16,3 +19,4 @@ New-LocalUser -Name $csvtartalom[0].Name`
                  -FullName $csvtartalom[0].FullName`
                  -Description $csvtartalom[0].Description`
                  -Password (ConvertTo-SecureString $csvtartalom[0].Password -AsPlainText -Force)
+
