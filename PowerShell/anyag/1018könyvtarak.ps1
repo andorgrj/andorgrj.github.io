@@ -118,7 +118,7 @@ New-Item -Path $konyvtarak[0].Name -ItemType Directory -Name neger
 -------------------------------------------------------------------------
 
 
-Fájl felolvasása és létrehozása
+Fájl felolvasása és létrehozása/ csv felvétele
 
 $konyvtarak = Import-Csv .\folders.csv
 $konyvtarak[14].name
