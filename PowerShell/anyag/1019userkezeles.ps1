@@ -86,3 +86,11 @@ IF (Test-Path -Path $csvutvonal) {
         Remove-LocalUser -Name $felhasznalo.Name
     }
 }
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+CSoportot fel tudunk venni csoport felhasználók közé
+
+$a = Get-LocalGroup -Name Felhasználók
+$a
+Add-LocalGroupMember -Group Ujcsoport1 -Member $a.Name
