@@ -30,14 +30,14 @@ $csvutvonal = "C:\Users\admin\ifksp\andorgrj.github.io\PowerShell\RM\users.csv"
 
 IF (Test-Path -Path $csvutvonal) {
     $csvtartalom = Import-Csv -Path $csvutvonal
-    ForEach {$felhasznalo in $csvtartalom} {
-        Write-Host $felhasznalo.Name
-    }
+    #ForEach {$felhasznalo in $csvtartalom} {
+        #Write-Host $felhasznalo.Name
+    #}
 }
 $csvtartalom.Name
 $csvtartalom.Description
 
-csvtartalom[0].Name
+$csvtartalom[0].Name
 
 $jelszo = ConvertTo-SecureString $csvtartalom[0].Password -AsPlainText -Force
 $jelszo2 = ConvertFrom-SecureString $jelszo
@@ -48,3 +48,41 @@ New-LocalUser -Name $csvtartalom[0].Name`
                  -Description $csvtartalom[0].Description`
                  -Password (ConvertTo-SecureString $csvtartalom[0].Password -AsPlainText -Force)
 
+$magdi = Get-LocalUser -Name magdolna.kiss
+$magdi | Get-Member
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+Itt minden felhasználót létrehoz ami a csv-ben benne van és jelszót is hozzáadja
+
+$csvutvonal = "C:\Users\admin\ifksp\andorgrj.github.io\PowerShell\RM\users.csv"
+
+IF (Test-Path -Path $csvutvonal) {
+    $csvtartalom = Import-Csv -Path $csvutvonal
+    ForEach ($felhasznalo in $csvtartalom) {
+        #Write-Host $felhasznalo.Name
+        New-LocalUser -Name $felhasznalo.Name`
+                 -FullName $felhasznalo.FullName`
+                 -Description $felhasznalo.Description`
+                 -Password (ConvertTo-SecureString $felhasznalo.Password -AsPlainText -Force)
+
+
+                 Add-LocalGroupMember -Group $felhasznalo.Group -Member $felhasznalo.Name ------->a megfelelő csoportba tudom ezzel berakni őket
+    }
+}
+
+
+----------------- így tudom törölni őket:
+IF (Test-Path -Path $csvutvonal) {
+    $csvtartalom = Import-Csv -Path $csvutvonal
+    ForEach ($felhasznalo in $csvtartalom) {
+        #Write-Host $felhasznalo.Name
+        <#
+        New-LocalUser -Name $felhasznalo.Name`
+                 -FullName $felhasznalo.FullName`
+                 -Description $felhasznalo.Description`
+                 -Password (ConvertTo-SecureString $felhasznalo.Password -AsPlainText -Force)
+           #>
+        Remove-LocalUser -Name $felhasznalo.Name
+    }
+}
