@@ -48,6 +48,9 @@ $b | foreach {Write-Host "This is $PSItem" -ForegroundColor red -BackgroundColor
 
 Get-PSDrive | Where-Object {$_.Free -gt 1} | ForEach-Object { Write-Host "Free Space for" $_.Root "is" ($_.Free/1gb) -ForegroundColor Red}
 "{0:N0}" -f 1000
+"{0:N2}" -f 1000
+"{0:c2}" -f 1000
+"{0:p2}" -f 1000
 
 Test-NetConnection
 Get-Help Tracert
@@ -99,5 +102,23 @@ $q | Where-Object -Property PrefixOrigin -eq DHCP | Format-Table
 Get-NetAdapter | Where-Object Name -eq Ethernet | Sort-Object -Property Name, MacAdress
 
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------
 
+$x = [int] (Read-Host "Add meg,hogy hány sor magas legyen a háromszög") 
+for($i=1; $i -le $x; $i++){ 
+   
+   for($k=1; $k -le $x -$i; $k++ ){
+      Write-Host -NoNewLine " "
+   }
 
+   for($j=1; $j -le 2 * $i - 1; $j++){ 
+     Write-Host -NoNewLine "*" 
+   }
+
+   Write-Host " "
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+Custom Property létrehozása  @{n='neve' ;e={$PSItem.}} /nevet adok neki, psitem itt a computerinfoból érkező adatok közül a csdnhost, ami a gépnevet jelenti 
+
+Get-ComputerInfo | Select-Object @{n='ComputerName' ;e={$PSItem.CsDNSHostName}}
