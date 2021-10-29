@@ -18,8 +18,6 @@ Get-NetAdapter | Where-Object Name -eq Ethernet | Sort-Object -Property Name, Ma
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
-nslookup progmasters.hu
-
 ipconfig -all
 
 tracert -4 rovision.ro
@@ -33,4 +31,27 @@ Test-NetConnection
 Get-NetAdapter | Where-Object -Property Name -EQ Ethernet
 
 arp -a
+
+route print -4
+
+mstsc # távoli asztali kapcsolat
+ncpa.cpl # hálózati kapcsolatok
+
+nslookup progmasters.hu
+
+nslookup -type=ns progmasters.hu #nameserverek
+
+nslookup -type=soa progmasters.hu #start of authority
+
+nslookup -query=mx progmasters.hu #mail record
+
+Get-DnsClientCache #dns cache 
+ipconfig /flushdns #dns cache törlése
+
+netstat -n -o
+
+
+Get-Command -Noun "DNS*"
+
+
 
