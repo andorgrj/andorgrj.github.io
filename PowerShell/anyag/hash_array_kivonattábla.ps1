@@ -25,9 +25,22 @@ Gyakorló feladat: az aktuális könyvtár útvonalát darabold fel a könyvtár
 - próbáld az eredméynt html, csv, json, xml formátumba elárolni (Get-Command -verb ConvertTo)
 
 
+
+$logFilePath = "C:\Users\admin\Desktop"
+$pathContents = $logFilePath.Split('\')
+Clear-Host
+$pathContents
+
+$logfile = Get-Location.ToString()
+$path = $logfile.Split('\')
+Clear-Host
+$path
+
+
+--------------------------------------------------------------------------------------------------------------------------------------
 $currentDir = Get-Location
 $currentDir = $currentDir.ToString()
-$dirArray = $currentDir -split ""
+$dirArray = $currentDir.Split('\')
 $hash = @{}
 
 for ($i = ($dirArray.Count - 1); $i -ge 0; $i--){
@@ -49,3 +62,30 @@ if ($CurrentPath.ToString().Length -eq 3) {
 }
 
 --------------------------------------------------------------------------------------------------------------------------------------
+
+Array -Tömbök
+
+$logFilePath = "C:\Users\admin\Desktop"
+$pathContents = $logFilePath.Split('\')
+$pathContents
+
+
+
+$array = "file", "host", "game"  --> tömb
+$array.Count
+$array = $array + "dns"  --> elem hozzáadás
+$array += "cache"       --> elem hozzáadás
+$array.Remove("cache")
+
+
+$g = Get-Help
+$g | Get-Member
+
+$m = Get-Service
+$m.count
+
+$m | Where-Object -Property Status -EQ Running
+$h = $m | Where-Object -Property Status -EQ Running
+$h.Count
+$h[15]
+$h[15].Status
