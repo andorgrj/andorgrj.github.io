@@ -25,7 +25,6 @@ Gyakorló feladat: az aktuális könyvtár útvonalát darabold fel a könyvtár
 - próbáld az eredméynt html, csv, json, xml formátumba elárolni (Get-Command -verb ConvertTo)
 
 
-
 $logFilePath = "C:\Users\admin\Desktop"
 $pathContents = $logFilePath.Split('\')
 Clear-Host
@@ -89,3 +88,13 @@ $h = $m | Where-Object -Property Status -EQ Running
 $h.Count
 $h[15]
 $h[15].Status
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+Formázás
+
+$logFilePath = "c:\Temp\log.txt"
+$logFileSize = 236.987
+
+"Log fájl helye: {0}. Mérete: {1}" -f $logFilePath, $logFileSize
+"Log fájl helye: {0,-15}. Mérete: {1,10:c}" -f $logFilePath, $logFileSize
