@@ -50,6 +50,9 @@ ipconfig /flushdns #dns cache törlése
 
 netstat -n -o
 
+Resolve-DnsName  ------> u.a. mint az nslookup de használhatóbb formát ad vissza
+
+Resolve-DnsName -Name gmail.com -Type MX
 
 Get-Command -Noun "DNS*"
 
