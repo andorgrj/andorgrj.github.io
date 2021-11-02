@@ -17,5 +17,10 @@ fqdn - fully qualified domain name
 
 router látja el a tűzfal szerepét - osi layeren a 3as-on legyenek, jobb tuzfal bentebb is tud menni
 
+router lan portjába kötve lehet access pointá alakítani a routert-dhcp serverét ekkor ki kell kapcsolni
 
+vpn router-vpn pass trough kell hogy mogotte vpn szervert tudjon uzemeltetni
 
+prod rendszerre nem nyomunk updatet:D facebook 
+
+syslog, zabbix hálózati forgalmat lehet velük figyelni
