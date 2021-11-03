@@ -47,6 +47,7 @@ nslookup -query=mx progmasters.hu #mail record
 
 Get-DnsClientCache #dns cache 
 ipconfig /flushdns #dns cache törlése
+Get-DnsClientCache | Select-Object Name,Entry | Sort Entry | Format-Table | Out-File C:\Users\Andor\Desktop\dns.csv
 
 netstat -n -o
 
