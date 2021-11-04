@@ -7,7 +7,7 @@ $a | Select-Object -Property Number, HealthStatus
 Get-Service | Where-Object {$_.Status -eq 'Running'}
 Get-Service | Where-Object Status -EQ Running
 
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Get-Command -Noun Process
 Get-Command -Noun Service
@@ -38,6 +38,8 @@ notepad C:\Users\admin\Desktop\service.json
 Get-Service -Name BITS
 Get-Help Start-Service -ShowWindow
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 $a = "Berlin"
 $b = "Vienna"
 
@@ -46,11 +48,16 @@ $a | foreach {Write-Host "This is $PSItem" -ForegroundColor red -BackgroundColor
 $b | foreach {Read-Host "This is $_."}
 $b | foreach {Write-Host "This is $PSItem" -ForegroundColor red -BackgroundColor Green}
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 Get-PSDrive | Where-Object {$_.Free -gt 1} | ForEach-Object { Write-Host "Free Space for" $_.Root "is" ($_.Free/1gb) -ForegroundColor Red}
 "{0:N0}" -f 1000
 "{0:N2}" -f 1000
 "{0:c2}" -f 1000
 "{0:p2}" -f 1000
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Test-NetConnection
 Get-Help Tracert
@@ -59,6 +66,7 @@ $m = Get-NetAdapterAdvancedProperty
 $m | Get-Member
 $m.SystemName
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Get-NetAdapter | Where-Object {$PSItem.Name -eq 'Ethernet'} | Select-Object -Property Status, MacAdress
 
@@ -142,4 +150,16 @@ For ($i=1; $i -le 10; $i++) {
 # endfor
 }
 
------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Clear-Host
+$num = [int] (Read-Host "Kérek egy számot")
+$i=1
+do
+{
+$res=$num*$i
+echo "$num * $i = $res"
+$i=$i+1
+}while($i -le 10)
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
