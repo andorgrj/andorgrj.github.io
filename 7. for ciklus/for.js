@@ -18,6 +18,7 @@ for (let i = 0; i < üzenet.length; i++) {
     
 }
 
+
 // Ternery operátor
 // let age = 33; 
 // let voteable; 
