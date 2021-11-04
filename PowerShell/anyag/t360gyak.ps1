@@ -78,3 +78,4 @@ Get-Service | Export-Csv c:\services.csv
 Get-Service | ConverTo-JSON | Out-File c:\services.json
 
 ----------------------------------------------------------------------------------------------------------
+ 6. jön

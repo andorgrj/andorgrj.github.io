@@ -118,7 +118,28 @@ for($i=1; $i -le $x; $i++){
    Write-Host " "
 }
 
----------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------
 Custom Property létrehozása  @{n='neve' ;e={$PSItem.}} /nevet adok neki, psitem itt a computerinfoból érkező adatok közül a csdnhost, ami a gépnevet jelenti 
 
 Get-ComputerInfo | Select-Object @{n='ComputerName' ;e={$PSItem.CsDNSHostName}}
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+For ciklus és számok
+
+# Kiürítem a képernyőt
+Clear-Host;
+# Kell egy random szám 1-10 = $number
+$number = Get-Random -Maximum 11;
+# kiírom a választott számot
+Write-Host "A(z) $number a véletlenszerűen választott szám.`n";
+
+# for $i 1-től 10-ig
+For ($i=1; $i -le 10; $i++) {
+#   szorzás elvégzése
+    $result = $i * $number;
+#   kiírni az adott sort
+    Write-Host "$i * $number = $result";
+# endfor
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
