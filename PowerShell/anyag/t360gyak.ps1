@@ -107,4 +107,38 @@ New-ItemProperty -Path HKCU:\Software\Apps -Name "AppDir" –Value "ShareDir"
 Get-ItemProperty . -Name AppDir
 
 -------------------------------------------------------------------------------------------------------------------------------
-8. jön
+Változók
+
+$scriptPath = "C:\Logs\"
+$scriptPath.GetType()
+$scriptPath | Get-Member
+$scriptFile = "myscript.ps1"
+$scriptPath += $ scriptFile
+$scriptPath
+$scriptPath.Replace("C:","D:")
+$scriptPath
+$scriptPath = $scriptPath.Replace("C:","D:")
+$scriptPath
+
+------------------------------------------------------------------------------------------------------------------------------
+DateTime típusú változók
+
+$today = Get-Date
+$today.GetType()
+$today | Get-Member
+$logFileName = [string]$today.Year + "-" + $today.Month + "-" + $today.Day + "-" + $today.Hour + "-" + $today.Minute + ".log"
+$theDayAfterTomorrow = $today.AddDays(2)
+$today
+$theDayBeforeYesterday = $today.AddDays(-2)
+$today
+
+-----------------------------------------------------------------------------------------------------------------------------
+ArrayList
+
+[System.Collections.ArrayList]$servers = "WEB01","WEB02","SQL01", „SQL02”
+$servers
+$servers.IsFixedSize
+$servers.Add(„SERV01”)
+$servers
+$servers.Remove(„WEB02”)
+$servers

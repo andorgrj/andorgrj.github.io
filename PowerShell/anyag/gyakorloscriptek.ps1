@@ -163,7 +163,101 @@ $i=$i+1
 }while($i -le 10)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
+Számok szorzás és kiiratás
+
+$num = 5
+1..10 | ForEach-Object {Write-Host $_ * $num = ($_ * $num)}
 
 
-$number = 5
-1..10 | ForEach-Object {Write-Host $_ " * $number = " ($_ * $number)}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Kártyás játék
+
+$ujra = $null
+
+$pakli = "A♤", "A❤", "A♧", "A♢", "2♤", "2❤", "2♧", "2♢", "3♤", "3❤", "3♧", "3♢", "4♤", "4❤", "4♧", "4♢",
+"5♤", "5❤", "5♧", "5♢", "6♤", "6❤", "6♧", "6♢", "7♤", "7❤", "7♧", "7♢", "8♤", "8❤", "8♧", "8♢",
+"9♤", "9❤", "9♧", "9♢", "10♤", "10❤", "10♧", "10♢", "J♤", "J❤", "J♧", "J♢", "Q♤", "Q❤", "Q♧",
+"Q♢", "K♤", "K❤", "K♧", "K♢"
+
+$kislapok = "2", "3", "4", "5", "6", "7", "8", "9"
+
+$nagylapok = "J", "Q", "K", "1"
+
+$valassz = "l", "m"
+
+while ($ujra -ne "n") {
+    $lap = get-random -InputObject $pakli -Count 20
+    $oszto = $lap[1]
+    $te = $lap[0] + " " + $lap[2]
+    $ujra = $null
+    $cardvalue = @{}
+    0..19 | ForEach-Object { if ($lap[$_][0] -in $kislapok) { (($cardvalue[$_] = $lap[$_][0]) / 1) }
+        elseif ($lap[$_][0] -in $nagylapok) { $cardvalue[$_] = 10 }
+        elseif ($lap[$_][0] -eq "A") { $cardvalue[$_] = 11 } }
+
+    $tetotal = (([string]$cardvalue[0] / 1) + ([string]$cardvalue[2] / 1))
+    Clear-Host
+    write-host "Osztó lapjai: " $oszto "`r`n"
+    write-host "Te lapjaid: " $te "        értéke: " $tetotal "`r`n"
+    $move = $null
+    $n = 4
+    while ($tetotal -lt 22 -and $move -ne 'm') {
+        $move = $null
+        while ($move -notin $valassz) {
+            $move = Read-Host -Prompt "Válassz!  'l' = lapot kérek, 'm' = megállok "
+            if ($move -eq 'l') {
+                Clear-Host; 
+                $te = $te + " " + $lap[$n]
+                $tetotal = ($tetotal) + ([string]$cardvalue[$n] / 1)
+                $n++
+                Clear-Host
+                write-host "Osztó lapjai: " $oszto "`r`n"
+                write-host "Te lapjaid: " $te "        értéke: " $tetotal "`r`n"
+            }
+            elseif ($move -eq 'm') {
+                $oszto = $lap[1] + " " + $lap[3] 
+                $osztototal = (([string]$cardvalue[1] / 1) + ([string]$cardvalue[3] / 1))
+                while ($osztototal -lt 17) {
+                    $oszto = $oszto + " " + $lap[$n]
+                    $osztototal = ($osztototal) + ([string]$cardvalue[$n] / 1)
+                    $n++
+                    Clear-Host
+                    write-host "Osztó lapjai: " $oszto "`r`n"
+                    write-host "Te lapjaid: " $te "        értéke: " $tetotal "`r`n"
+                    write-host "Válassz!  'l' = lapot kérek,    'm' = megállok"
+                }
+                Clear-Host
+                if ($tetotal -gt $osztototal -or $osztototal -gt 21) {
+                    Clear-Host
+                    write-host "Osztó lapjai: " $oszto "        értéke: " $osztototal "`r`n"
+                    write-host "Te lapjaid: " $te "        értéke: " $tetotal "`r`n"
+                    write-host "Győztél!!!" "`r`n"
+                }
+                if ($tetotal -eq $osztototal -and $osztototal -le 21) {
+                    Clear-Host
+                    write-host "Osztó lapjai: " $oszto "        értéke: " $osztototal "`r`n"
+                    write-host "Te lapjaid: " $te "        értéke: " $tetotal "`r`n"
+                    write-host "Döntetlen" "`r`n"
+                }
+                if ($tetotal -lt $osztototal -and $osztototal -le 21) {
+                    Clear-Host
+                    write-host "Osztó lapjai: " $oszto "        értéke: " $osztototal "`r`n"
+                    write-host "Te lapjaid: " $te "        értéke: " $tetotal "`r`n"
+                    write-host "Talán legközelebb több szerencséd lesz !" "`r`n"
+                }
+            }
+            else { write-host "Hibás parancs" }
+        }
+    }
+
+    if ($tetotal -gt 21) {
+        Clear-Host; 
+        write-host "Osztó lapjai: " $oszto "        értéke: " $osztototal "`r`n"
+        write-host "Te lapjaid: " $te "        értéke: " $tetotal "`r`n"
+        write-host "Talán legközelebb több szerencséd lesz" "`r`n"
+    }
+
+    while ($ujra -ne "i" -and $ujra -ne "n") {
+        $ujra = Read-Host -Prompt "Játszol még egyet?  i/n" 
+    }
+}
