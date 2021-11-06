@@ -133,12 +133,28 @@ $theDayBeforeYesterday = $today.AddDays(-2)
 $today
 
 -----------------------------------------------------------------------------------------------------------------------------
-ArrayList
+ArrayList - Tömbök
 
-[System.Collections.ArrayList]$servers = "WEB01","WEB02","SQL01", „SQL02”
+[System.Collections.ArrayList]$servers = "WEB01","WEB02","SQL01", "SQL02”
 $servers
 $servers.IsFixedSize
 $servers.Add(„SERV01”)
 $servers
 $servers.Remove(„WEB02”)
 $servers
+
+-----------------------------------------------------------------------------------------------------------------------------
+Hash táblák
+
+$servers=@{"WEB01"="192.168.1.100";"WEB02"="192.168.1.101";"SQL01"="192.168.1.130"}
+$servers
+$servers.WEB02
+$servers.WEB02 = „10.10.10.30”
+$servers
+$servers.Add(„SQL02”;”192.168.1.140”)
+$servers
+$servers.Remove(„WEB01”)
+$servers
+
+-----------------------------------------------------------------------------------------------------------------------------
+

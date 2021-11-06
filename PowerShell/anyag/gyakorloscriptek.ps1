@@ -261,3 +261,51 @@ while ($ujra -ne "n") {
         $ujra = Read-Host -Prompt "Játszol még egyet?  i/n" 
     }
 }
+
+------------------------------------------------------------------------------------------------------------------------------------------
+Kő-papír
+
+$p1points = 0;
+$p2points = 0;
+Clear-Host;
+while ($true) {
+    
+    $choice = @('&Rock','&Paper','&Scissors','&Lizard','&Spock');
+    $decision = $Host.UI.PromptForChoice('Your decision','Select a weapon:',$choice,0);
+    switch ($decision) {
+        0 {$p1 = 'rock'; break;}
+        1 {$p1 = 'paper'; break;}
+        2 {$p1 = 'scissors'; break;}
+        3 {$p1 = 'lizard'; break;}
+        4 {$p1 = 'spock'; break;}
+    }
+
+
+    #$p1 = Get-Random -InputObject @('rock','paper','scissors','lizard','spock');
+    $p2 = Get-Random -InputObject @('rock','paper','scissors','lizard','spock');
+    Clear-Host;
+    Write-Host 'Player: '$p1.ToUpper();
+    Write-Host 'Machine: '$p2.ToUpper()`n`r;
+
+
+    if ($p1 -eq $p2) {
+        Write-Host 'Draw!'`n`r;
+    }
+    elseif (
+        ($p1 -eq 'rock' -and (($p2 -eq 'scissors') -or ($p2 -eq 'lizard')) ) -or
+        ($p1 -eq 'scissors' -and (($p2 -eq 'paper') -or ($p2 -eq 'lizard')) ) -or
+        ($p1 -eq 'paper' -and (($p2 -eq 'rock') -or ($p2 -eq 'spock')) ) -or
+        ($p1 -eq 'lizard' -and (($p2 -eq 'paper') -or ($p2 -eq 'spock')) ) -or
+        ($p1 -eq 'spock' -and (($p2 -eq 'scissors') -or ($p2 -eq 'rock')) )
+        ) {
+        Write-Host 'Player won!'`n`r;
+        $p1points ++;
+
+    } 
+    else {
+        Write-Host 'Machine won!'`n`r;
+        $p2points ++;
+    }
+        Write-Host 'Player points: '$p1points;
+        Write-Host 'Machine points: '$p2points;
+}
