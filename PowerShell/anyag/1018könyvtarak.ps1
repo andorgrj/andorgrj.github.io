@@ -21,7 +21,7 @@ $k | Get-Member
 $k.Name
 
 
-Get-Command -Noun item   - fájl és könyvtárműveletek lekérdezése amit tudunk csinálni
+Get-Command -Noun Item   - fájl és könyvtárműveletek lekérdezése amit tudunk csinálni
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 Method2 / és csv fájlba importálása
@@ -151,35 +151,18 @@ $konyvtarak | ForEach-Object {New-Item -Path $_.name -ItemType directory}
 
 
 
-
-
 ---------------------------------------------------------------------------------------------------------------------------------
+Fájl létezésének lekérdezése
 
-$csvpath = Read-Host -Prompt "Fájl elérési útja, neve:"
+$csvpath = Read-Host -Prompt "Fájl elérési útja, neve"
 $konyvtarak = Import-Csv $csvpath
 $csvpathletezik = Test-Path -Path $csvpath
 If (Test-Path -Path $csvpath) {
-
+    Write-Host "létezik"
 }
 Else {
-    Write-Host "Nem"
+    Write-Host "nem létezik"
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

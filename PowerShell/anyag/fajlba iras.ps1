@@ -7,9 +7,6 @@ $filePath = "$env:USERPROFILE\Desktop\bbbbb.txt"
 
 
 
-
-
-
 Több
 
 Get-Date

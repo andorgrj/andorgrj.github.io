@@ -69,7 +69,8 @@ Get-Command -Noun Service       #Mit csinálhatunk a szolgáltatásokkal (Get-Se
 
 Get-Command -Verb Find          #Mely parancsokanak létezik Find- előtagja
 Get-Command -Verb New
-
+Get-Command -Noun WindowsOptionalFeature
+Get-Windowsoptionalfeature -Online | Where-Object {$_.FeatureName -like "*Windows*"}
 
 
 

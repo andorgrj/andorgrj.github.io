@@ -13,6 +13,7 @@ Get-Command -Verb Set -Noun *adapter*
 
 Get-Help *branch*
 
+
 -------------------------------------------------------------------------------------------------------------------------------
 Security eseménynapló lekérdezése, adott ID-val rendelkező bejegyzésekre szűrve
 

@@ -1,4 +1,5 @@
 Get-Windowsoptionalfeature -Online | Where-Object {$_.FeatureName -like "*Windows*"}
+
 Disable-WindowsOptionalFeature -Online -FeatureName TelnetClient
 
 Get-Command -Noun Process

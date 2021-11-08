@@ -129,6 +129,7 @@ for($i=1; $i -le $x; $i++){
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
 Custom Property létrehozása  @{n='neve' ;e={$PSItem.}} /nevet adok neki, psitem itt a computerinfoból érkező adatok közül a csdnhost, ami a gépnevet jelenti 
 
+
 Get-ComputerInfo | Select-Object @{n='ComputerName' ;e={$PSItem.CsDNSHostName}}
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
