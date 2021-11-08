@@ -309,3 +309,54 @@ while ($true) {
         Write-Host 'Player points: '$p1points;
         Write-Host 'Machine points: '$p2points;
 }
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+Szó vizsgálat
+
+
+$szo = Read-Host -Prompt "ird ide a vizsgálando szót: "
+$charszo = $szo.ToCharArray()
+[array]::Reverse($charszo)
+$ujszo = -Join($charszo)
+if ($szo -eq $ujszo) {Write-Host "ez palindrom"}
+else {Write-Host "ez nem"}
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+String keresése a szövegben vagy megadott fájlban
+
+$SEL = Select-String -Path C:\Windows\System32\drivers\etc\hosts -Pattern "for example"
+
+if ($SEL -ne $null)
+{
+    echo Contains String
+}
+else
+{
+    echo Not Contains String
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------
+palindrom szám vizsgálat
+
+Clear-Host
+[int]$number = Read-Host 'Írd be a három jegyű számot';
+
+$lastdigit = $number % 10;
+
+$firstdigit = [math]::floor($number / 100);
+
+if ($firstdigit -eq $lastdigit) {
+    Write-Host 'palindrom!';
+}
+else { 
+    Write-Host 'nem az';
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------
+Hostfájlban olyan sorok keresése, ahol nem # -el kezdődik a sor
+
+$hostfile = Get-Content -Path c:\windows\system32\drivers\etc\hosts
+ForEach ($sor in $hostfile) {
+    ($sor.Substring(0,1) -ne "#")
+    if (($sor.Length -ne 0) -and ($sor.Substring(0,1) -ne "") ){ Write-Host $sor}
+}
