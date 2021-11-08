@@ -157,4 +157,134 @@ $servers.Remove(„WEB01”)
 $servers
 
 -----------------------------------------------------------------------------------------------------------------------------
+String, date
 
+[array]$formatArray = @('you','values','them.')
+$user = (Get-ChildItem Env:\USERNAME).Value
+$date = Get-Date
+"A felhasználóneved:  {0} és az idő [{1:HH}:{1:mm}:{1:ss}]" -f $user,$date
+$dt = new-object dateTime 2021,03,17 , 14,09,53
+write-host "A dt változó értéke: $('{0:yyyy-MM-dd HH:mm:ss}' -f $dt)"
+
+-----------------------------------------------------------------------------------------------------------------------------
+Számok
+
+[int]$numbers = '123456'
+[int]$largenumbers = '1234567890'
+[decimal]$decnumbers = '9876.54'
+[decimal]$percnumber = '0.7534'
+[decimal]$lowpercnumber = '0.009876'
+ [double]$dblnumber = '250.23'
+"{0:c}" -f $numbers
+"{0:d}" -f $numbers # ==> 123456
+"{0:e}" -f $numbers
+"{0:f}" -f $numbers
+"{0:g}" -f $decnumbers
+"{0:p}" -f $lowpercnumber
+"{0:x}" -f $numbers
+"{0:0000000000}" -f $numbers
+"{0:####}" -f $decnumbers
+"{0:$#,##0.00}" -f $numbers
+
+----------------------------------------------------------------------------------------------------------------------------
+Execution policy
+
+Get-ExecutionPolicy
+Set-ExecutionPolicy AllSigned
+.\HelloWorld.ps1
+Set-ExecutionPolicy Unrestricted
+.\HelloWorld.ps1
+
+----------------------------------------------------------------------------------------------------------------------------
+Foreach
+
+Set-Location c: 
+New-Item services.txt -ItemType File 
+Get-Service “BITS” | Select -ExpandProperty Name | Out-File services.txt – Append
+Get-Service w32time | Select -ExpandProperty Name | Out-File services.txt – Append
+Script:
+$services = Get-Content services.txt
+
+ForEach ($s in $services) {
+    $name = (Get-Service $s).Name
+    $name
+}
+
+---------------------------------------------------------------------------------------------------------------------------
+If
+
+Set-Location c: 
+New-Item services.txt -ItemType File 
+Get-Service “BITS” | Select -ExpandProperty Name | Out-File services.txt – Append
+Get-Service w32time | Select -ExpandProperty Name | Out-File services.txt – Append
+
+
+Script:
+
+$services = Get-Content services.txt
+
+ForEach ($s in $services) {
+    $status = (Get-Service $s).Status
+    If ($Status -ne "Running") {
+        Start-Service $s
+        Write-Host "Started $s"
+    } Else {
+        Write-Host "$s is already started"
+    }
+}
+
+Script:
+
+$freeSpace = 12GB
+If ($freeSpace -le 15GB) {
+    Write-Host „Kevesebb, mint 15GB hely van”
+} ElseIf ($freeSpace -le 20GB) {
+    Write-Host „Kevesebb, mint 20GB hely van”
+} ElseIf ($freeSpace -le 30GB) {
+    Write-„Kevesebb, mint 30GB hely van”
+} Else {
+    Write-Host „Több, mint 30GB hely van”
+}
+
+---------------------------------------------------------------------------------------------------------------------------
+Switch
+
+Script(módosítsd a $computer változót, hogy megnézd milyen eredményt kapsz): 
+$computer = "LON-CL1"
+
+$role = "ismeretlen szerepkör"
+$location = "ismeretlen helyszín"
+
+Switch -wildcard ($computer) {
+    "*-CL*" {$role = "client"}
+    "*-SRV*" {$role = "server"}
+    "*-DC*" {$role = "domain controller"}
+    "LON-*" {$location = "London"}
+    "VAN-*" {$location = "Vancouver"}
+    Default {"A $computer nem érvényes gépnév"}
+}
+
+Write-Host "A $computer gép a $role szerepkörben van a $location helyen"
+
+---------------------------------------------------------------------------------------------------------------------------
+Beolvasás fájlból
+
+Script1:
+Get-Content c:\computers.txt
+$computers = Get-Content c:\computers.txt
+$computers.count
+$computers
+
+Script2:
+Import-Csv c:\users.csv
+$users = Import-Csv c:\users.csv
+$users.count
+$users[0]
+$users[0].First
+
+Script3
+Import-Clixml c:\users.xml
+$usersXml = Import-Clixml c:\users.xml
+$usersXml.count
+$usersXml[0]
+$usersXml | Get-Member
