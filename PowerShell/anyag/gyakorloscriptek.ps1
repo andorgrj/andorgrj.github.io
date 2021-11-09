@@ -8,7 +8,12 @@ Get-Service | Where-Object {$_.Status -eq 'Running'}
 Get-Service | Where-Object Status -EQ Running
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Host fájl megkeresése ebben a példában
 
+Get-ChildItem -File -Recurse -Path $env:SystemRoot\System32\Drivers\etc | Where-Object {$_.Name -eq 'hosts'} | Get-Content | Where-Object {$_[0] -ne 'Example'}
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 Show-Command Get-Service
 Get-Help Get-Service -Examples
 Get-Help About* -ShowWindow
