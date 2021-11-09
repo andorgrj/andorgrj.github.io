@@ -9,6 +9,48 @@ Get-Service | Where-Object Status -EQ Running
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Show-Command Get-Service
+Get-Help Get-Service -Examples
+Get-Help About* -ShowWindow
+Get-Command -Verb Get -Noun *net*
+Get-Alias -Definition Get-ChildItem
+
+Get-Process | Sort-Object -Property Status
+Get-EventLog -LogName Security -Newest 30 | Sort-Object -Property TimeWritten -Descending
+
+Get-Service | Measure-Object | Get-Member
+Get-Process | Get-Member
+Get-Process | Measure-Object -Property VM -Sum  #mennyi memóriát használ az adott process
+Get-Process | Sort-Object -Property WM -Descending | Select-Object -First 10 #melyik 10 process használja a legtöbb memóriát
+
+Get-EventLog -LogName Security -Newest 30 | Select-Object -Property EventID, TimeWritten  
+
+Get-Volume | Select-Object -Property Size, SizeRemaining 
+@{  n='Size';
+    e= {'{0:N2}' -f($PSItem.Size/1GB)}
+}
+
+@{  n='Freespace';
+    e= {'{0:N2}' -f($PSItem.SizeRemaining/1GB)}
+}
+
+Get-Content -Path $env:SystemRoot\System32\Drivers\etc\hosts | ? { $_[0] -ne "#" }
+
+$b = Get-Partition -PartitionNumber 4
+$b.Guid
+
+Get-Command -Noun Disk
+
+Get-Process | Where-Object {$_.ProcessName -eq 'svchost'} #----> megmutatja az összes olyan folyamatot aminek a neve egyenlő svchost-al
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 Get-Command -Noun Process
 Get-Command -Noun Service
 
