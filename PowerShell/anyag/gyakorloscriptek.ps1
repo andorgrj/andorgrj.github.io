@@ -408,3 +408,11 @@ ForEach ($sor in $hostfile) {
     ($sor.Substring(0,1) -ne "#")
     if (($sor.Length -ne 0) -and ($sor.Substring(0,1) -ne "") ){ Write-Host $sor}
 }
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Get-Date -DisplayHint Date
+$DateStr = Get-Date -format "MMdd"
+$birthdays = '0201', '0913', '0216', '0723', '0815', '0611', '0115', '0813', '1205', '0706', '0825', '0803', '1007', '0706', '0605', '1201', '1029', '0111', '0717', '0607', '0104', '1214', '1104', '0808'
+if ($birthdays -contains $DateStr) { Write-Host "Ma valamelyikünknek a csoportból születésnapja van. Gratulálunk! Igyunk egyet az egészségére!"}
+else {Write-Host "Ma nincs senkinek születésnapja a csoportból. Talán egy másik nap ünnepelhettek."}

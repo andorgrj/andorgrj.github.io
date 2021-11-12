@@ -73,3 +73,10 @@ Write-Host 'Könyvtárak száma:' $csvimport.Count
 #-----------------------------------------------------------[Execution]------------------------------------------------------------
 
 #-----------------------------------------------------------[Finish up]------------------------------------------------------------
+
+IF (Test-Path -Path $csvpath) {
+    $csvtartalom = Import-Csv -Path $csvutvonal
+
+    $valasz = @('&Yes', '&No')
+    $dontes = $Host.UI.Prompt
+}

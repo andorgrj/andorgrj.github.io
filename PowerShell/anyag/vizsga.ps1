@@ -14,6 +14,39 @@
 End riport
 ****************************
 
+---------------------------------------------------------------------------------------------------------------------------------------
+
+$date = Get-Date
+$computerinfo = Get-ComputerInfo | Select-Object CsName
+$user = Get-LocalUser | Where-Object -Property Lastlogon -ne $null | Select-Object Name,LastLogon | Format-Table | Out-String
+$net = Get-NetAdapter | Get-NetIPAddress | Where-Object AddressFamily -eq IPv4 | Select-Object InterfaceAlias,IPaddress | Format-Table | Out-String
+$process = Get-Process | Sort-Object CPU -Descending | Select-Object -First 5 | Select-Object Name,CPU,WS | Format-Table | Out-String
+
+Clear-Host
+Write-Host "
+
+***************************
+* Simple riport
+* Date: $date
+* Computer: $computerinfo
+**************************
+
+
+
+$user
+
+$net
+
+$process 
+
+End riport
+****************************
+"
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
 
 Clear-Host
 Write-Host "*************************************************************************************" 
@@ -31,9 +64,9 @@ Write-Host "********************************************************************
 
 
 
-----------------------------------------------------------------------------------------------------------------------------
-Get-LocalUser | Select-Object -Property Name,LastLogon | Where-Object -Property LastLogon -NE $null
+--------------------------------------------------------------------------------------------------------------------------------------
 
+Get-LocalUser | Select-Object -Property Name,LastLogon | Where-Object -Property LastLogon -NE $null
 
 Get-NetIPAddress | Select-Object -Property InterfaceAlias, IPv4Address | Where-Object -Property IPv4Address -NE $null
 
