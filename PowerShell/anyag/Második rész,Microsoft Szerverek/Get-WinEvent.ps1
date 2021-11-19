@@ -36,6 +36,8 @@ Get-WinEvent -FilterHashtable @{
 [System.Diagnostics.Eventing.Reader.StandardEventLevel] | Get-Member -Static -MemberType Property
 
 
+https://www.loggly.com/ultimate-guide/windows-logging-basics/
+
 https://docs.microsoft.com/hu-hu/powershell/scripting/samples/creating-get-winevent-queries-with-filterhashtable?view=powershell-5.1
 
 https://hu.univdesigntechnologies.com/how-work-with-custom-views-event-viewer
