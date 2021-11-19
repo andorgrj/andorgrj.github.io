@@ -21,6 +21,8 @@ The Invoke-Command cmdlet runs commands on a local or remote computer and return
 
 
 Get-Service winrm
+
+
 Invoke-Command -ScriptBlock {$env:COMPUTERNAME} -ComputerName 10.1.0.5
 Invoke-Command -ScriptBlock {D:\ps.ps1} -ComputerName 10.1.0.5
 
