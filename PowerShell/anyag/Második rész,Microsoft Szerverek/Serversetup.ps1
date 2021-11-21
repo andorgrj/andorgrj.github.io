@@ -1,6 +1,6 @@
 TrustedHost megadása a kapcsolódáshoz
 
-Set-Item WSMan:\localhost\Client\TrustedHosts -Value "*" -Force  -> * helyett ip cím megadható
+Set-Item WSMan:\localhost\Client\TrustedHosts -Value "*" -Force  -> * helyett ip cím is megadható
 Get-Item WSMan:\localhost\Client\TrustedHosts
 
 
@@ -25,7 +25,8 @@ Get-WmiObject -Class win32_service | Where-Object {$_.name -like "WinRM"}
 Set-Service WinRM -StartMode Automatic
 
 Engedélyezni a PSRemote-ot:
-Enable-PSRemoting -Force vagy Enable-PSRemoting -Force ‑SkipNetworkProfileCheck
+Enable-PSRemoting -Force vagy 
+Enable-PSRemoting -Force ‑SkipNetworkProfileCheck
 
 https://www.netspi.com/blog/technical/network-penetration-testing/powershell-remoting-cheatsheet/
 

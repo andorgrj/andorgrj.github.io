@@ -70,3 +70,6 @@ $TimeProeprty = @{n="Time";e={$_.TimeGenerated}}
 Get-EventLog System -Source Microsoft-Windows-Winlogon | select $UserProperty,$TypeProperty,$TimeProeprty |OUT-Gridview
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Window updatek kilistázása
+
+Get-WmiObject -class win32_quickfixengineering | Sort-Object -Descending | OUT-Gridview
