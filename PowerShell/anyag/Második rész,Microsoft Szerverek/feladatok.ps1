@@ -8,6 +8,34 @@ $Credential | Export-CliXml -Path C:\Users\Andor\ifksp\cred.txt
 $import = Import-CliXml -Path C:\Users\Andor\ifksp\cred.txt
 
 https://www.jaapbrasser.com/quickly-and-securely-storing-your-credentials-powershell/
+
+
+--------------------------------------------------------------method2
+$Path = "$HOME\.ssh\creds.txt"
+$Credential = Get-Credential
+if (Test-Path $Path) {
+    $Credential_old = Import-CliXml -Path $Path
+    $Hash = @{ Old = $Credential_old; New = $Credential }
+    $Hash | Export-CliXml -Path $Path}
+else {$Credential | Export-CliXml -Path $Path}
+-------------------------------------------------------------method3
+
+$credential = Get-Credential;
+-join($credential.UserName,',',($credential.Password | ConvertFrom-SecureString)) | Add-Content -Path "$env:USERPROFILE.ssh\creds.txt"
+
+--------------------------------------------------------------------method4
+$credential = Get-Credential
+$path = Join-Path $env:USERPROFILE "\.ssh\creds.txt"
+If (Test-Path $path){
+$credContent = Get-Content -Path $path
+$credential | Export-Clixml -Path $path
+Add-Content -Path $path -Value $credContent
+}
+Else{
+$credential | Export-Clixml -Path $path
+}
+
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Számítógéphez csatlakozás számának megtekintése/Kiváncsi vagyok kik, honnan, és mikor csatlakoztak távoli asztallal egy számítógéphez.
 
