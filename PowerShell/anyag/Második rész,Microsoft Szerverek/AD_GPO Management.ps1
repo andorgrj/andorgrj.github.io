@@ -25,12 +25,24 @@ Group and Policy Object -> New GPO -> pl PDrive -> jobb gomb/edit -> Preferencie
 ha ez kész -> gpupdate/ force -> server és Win10 gépen
 
 -----------------------------------------------------------------------------------------------------------
-Ikon készítése
+Shortcut - Ikon készítése
 
 Group and Policy Object -> New GPO -> pl PMIkon -> jobb gomb/edit -> Preferencies/Windows Settings/Shortcuts -> New Shortcut -> Location/targetpath and settings
 ha ez kész -> gpupdate/ force -> server és Win10 gépen
 
+-----------------------------------------------------------------------------------------------------------
+Backup készítése
 
+jobb egér -> backup -> hely megadása
+
+------------------------------------------------------------------------------------------------------------
+GPO konténerek helye
+
+Get-GPO -all
+
+Get-GPO -Guid 11bef468-aa51-487f-becb-5d12275bfe71 | Select *
+
+Sytem -> Policies
 
 
 -----------------------------------------------------------------------------------------------------------
@@ -57,6 +69,8 @@ Get-ADRootDSE
 (Get-ADRootDSE).schemaNamingContext
 (Get-ADRootDSE).namingContexts
 
+
+#Active Directory adatok lekérdezése
 get-adobject -filter 'objectclass -eq "group"'
 get-adobject -filter * | Where-Object {$_.objectclass -eq 'Computer'}
 get-adobject -filter * | Where-Object {$_.objectclass -eq 'User'}
