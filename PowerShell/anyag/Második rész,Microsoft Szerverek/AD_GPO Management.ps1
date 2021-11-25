@@ -36,6 +36,23 @@ Backup készítése
 jobb egér -> backup -> hely megadása
 
 ------------------------------------------------------------------------------------------------------------
+Recycle bin/Törölt elemek helye
+
+LDAP -> connect -> bind
+https://stealthbits.com/blog/active-directory-object-recovery-recycle-bin/
+
+Beállítása:
+
+Active Directory Administrative Center - gandor.local -> jobbgomb -> Enable Recycle Bin
+
+Enable-ADOptionalFeature –Identity 'CN=Recycle Bin Feature,CN=Optional Features,CN=Directory Service,CN=Windows NT,CN=Services,CN=Configuration,DC=gandor,DC=local' –Scope ForestOrConfigurationSet –Target 'gandor.local'
+https://www.prajwaldesai.com/active-directory-recycle-bin-ad-recycle-bin/
+
+
+Get-ADObject -filter 'isDeleted -eq $true -and name -ne "Deleted Objects"' -includeDeletedObjects
+
+
+------------------------------------------------------------------------------------------------------------
 GPO konténerek helye
 
 Get-GPO -all
@@ -44,9 +61,13 @@ Get-GPO -Guid 11bef468-aa51-487f-becb-5d12275bfe71 | Select *
 
 Sytem -> Policies
 
-
 -----------------------------------------------------------------------------------------------------------
+PING túzfal beállítása GPO-val
 
+https://thesysadminchannel.com/how-to-enable-ping-using-group-policy-gpo/
+
+
+--------------------------------------------------------------------------------------------------------------
 ping gandor.local
 
 dcdiag   ->domain controllel leellenőrzése

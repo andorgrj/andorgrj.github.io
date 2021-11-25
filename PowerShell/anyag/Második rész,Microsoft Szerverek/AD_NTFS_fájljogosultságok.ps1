@@ -1,3 +1,17 @@
+https://blog.netwrix.com/2018/04/18/how-to-manage-file-system-acls-with-powershell-scripts/
+https://blog.netwrix.com/2018/04/18/how-to-manage-file-system-acls-with-powershell-scripts/
+https://hu.abcdef.wiki/wiki/Role-based_access_control
+https://kepzes.progmasters.hu/pluginfile.php/23129/mod_resource/content/1/F%C3%A1jlkiszolg%C3%A1l%C3%B3.pdf
+
+---------------------------------------------------------------------------------------------------------------
+Öröklődés kikapcsolása
+
+Kiválasztott mappára properties -> Security -> Advanced -> inheritance -> explicit -> edit -> details
+
+
+
+
+--------------------------------------------------------------------------------------------------------------
 <#
 Remember, you have two types of permission with shares
 
@@ -7,22 +21,21 @@ Remember, you have two types of permission with shares
 #>
 
 # -------------------------------------------------------------------------------------
-# Share jogosultságok
+# Share jogosultságokkal megosztunk
 Get-Command -Module smbshare
 
 New-SmbShare -Name "Peldashare" -Path "C:\Peldashare"
 
 Get-SmbShare -Name "Peldashare"
-Get-SmbShareAccess -Name "Peldashare" #-> jogosultságokat tartalmazza
+Get-SmbShareAccess -Name "Peldashare"
 
-Grant-SmbShareAccess -Name peldashare -AccountName ujcsoport1 -AccessRight Custom #share jog beállítása
-Revoke-SmbShareAccess -Name peldashare -AccountName ujcsoport1 #share jog visszavonása
+Grant-SmbShareAccess -Name peldashare -AccountName ujcsoport1 -AccessRight Custom
+Revoke-SmbShareAccess -Name peldashare -AccountName ujcsoport1
 Block-SmbShareAccess -Name peldashare -AccountName mentor3 -Force
 Unblock-SmbShareAccess -Name peldashare -AccountName mentor3 -Force
 
 # ---------------------------------------------------------------------------------------
-https://blog.netwrix.com/2018/04/18/how-to-manage-file-system-acls-with-powershell-scripts/
-# NTFS jogosultságok kezelés Acl objektumokkal történik
+# NTFS jogosultságok kezelés Acl objektumokkal történik /finomhangolunk
 # Acl (Access Controll List), ACE (Access Controll Entities)
 Get-acl | Select-Object *
 $egyacl = Get-acl
@@ -46,4 +59,3 @@ foreach ($user in $users) {
 }
 # $acl | Set-Acl -path "c:\utvonal"
 # .SetAccessRule will overwrite any existing acls (other than inherited rights) while .AddAccessRule will leave existing acls unchanged.
-
