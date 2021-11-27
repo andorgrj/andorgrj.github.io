@@ -3,6 +3,8 @@ https://blog.netwrix.com/2018/04/18/how-to-manage-file-system-acls-with-powershe
 https://hu.abcdef.wiki/wiki/Role-based_access_control
 https://kepzes.progmasters.hu/pluginfile.php/23129/mod_resource/content/1/F%C3%A1jlkiszolg%C3%A1l%C3%B3.pdf
 
+
+fájljogosultságok powershellel cikkek
 ---------------------------------------------------------------------------------------------------------------
 Öröklődés kikapcsolása
 

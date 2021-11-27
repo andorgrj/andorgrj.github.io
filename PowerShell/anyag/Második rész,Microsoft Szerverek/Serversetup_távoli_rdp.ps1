@@ -48,7 +48,7 @@ https://docs.microsoft.com/en-us/sysinternals/
 
 
 ---------------------------------------------------------------------------------------------------------------------------------
-Sources and guides from the internet
+Sources and guides from the internet for REMOTE CONTROLLING
 
 https://docs.microsoft.com/hu-hu/powershell/scripting/learn/remoting/running-remote-commands?view=powershell-5.1
 
@@ -57,6 +57,8 @@ https://virtuallyinclined.com/2017/06/01/windows-server-2016-active-directory-se
 https://www.netspi.com/blog/technical/network-penetration-testing/powershell-remoting-cheatsheet/
 
 https://sid-500.com/2017/07/09/powershell-remoting-how-to-connect-to-remote-hosts-in-a-domain-and-in-a-non-domain-environment-trusted-hosts/
+
+Invoke-kal távoli gépet lehet
 ---------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -80,3 +82,28 @@ core.nsg -> ping -> ICMP set
 TrustedHosts beállítása
 
 
+------------------------------------------------------------------------------------------------------------------------------------------------
+Távoli asztali csatlakozás engedélyezése / mstsc
+
+Open this in the workstation where you want to connect, Control Panel\System and Security\System, click Advance System Settings. On the Remote tab, on the Remote Desktop group, click the button Select Users...
+
+Click Add and add the user that you want to have access. If you are using AD, make sure you can ping the domain. Always click Check Names, to make sure that the user you are adding are correct. ex: myusername@mydomain.com.
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+Azon a gépen amelyiket kezelni akarod:
+
+Ellenőrizni, hogy a WinRM szolgáltatás fut:  Get-Service WinRM vagy részletesebben: Get-WmiObject -Class win32_service | Where-Object {$_.name -like "WinRM"} , ha nem, akkor el kell indítani: Set-Service WinRM -StartMode Automatic
+Engedélyezni a PSRemote-ot Enable-PSRemoting -Force vagy Enable-PSRemoting -Force ‑SkipNetworkProfileCheck If the computer's current connection type is set to public, the above command will produce an error message because by default PowerShell remoting is only enabled for private and domain connection types. To avoid the error message and enable PowerShell remoting on a public network, you can use the ‑SkipNetworkProfileCheck parameter.
+
+Azon a gépen amelyikről kezeled:
+
+Felvenni a hostot a megbízható hostok közé Set-Item WSMan:\localhost\Client\TrustedHosts -Value "10.0.2.33" -Force vagy engedélyezni mindent Set-Item WSMan:localhost\client\trustedhosts -value * Trusted hostok ellenőrzése Get-Item WSMan:\localhost\Client\TrustedHosts
+PSSession létrehozása $valtozo = New-PSSession –ComputerName xxxx –Credentials domain\serveradmin vagy csak simán New-PSSession –ComputerName xxxx –Credentials domain\serveradmin
+Belépés 1 PSSessionbe Enter-PSSession –ComputerName xxxx –Credentials domain\serveradmin vagy ha van háttérkapcsolat akkor Enter-PSSession $valtozo
+
+https://4sysops.com/wiki/enable-powershell-remoting/

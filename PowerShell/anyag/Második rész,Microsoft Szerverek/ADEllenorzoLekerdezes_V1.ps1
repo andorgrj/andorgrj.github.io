@@ -1,10 +1,10 @@
-Import-Module ActiveDirectory
+# Import-Module ActiveDirectory
   
 # Store the data from NewUsersFinal.csv in the $ADUsers variable
-$ADUsers = Import-Csv C:\Users\dani\Desktop\SpecOU.csv -Delimiter ","
+# $ADUsers = Import-Csv C:\Users\dani\Desktop\SpecOU.csv -Delimiter ","
 
 # Define UPN
-# Ellenörző lekérdezés
+Ellenörző lekérdezés ---------------------------------------------------------------------------------------------------------------
 # 
 # A $sorszamom, $nevem, és a 4 $keresoroot változóknak a helyes értékét állítsd be a saját domain beállításaid szerint.
 # A $outfile változóban az útvonalat (C:\Peldashare\) javítani kell a számodra helyesre, a fájl neve maradjon.
