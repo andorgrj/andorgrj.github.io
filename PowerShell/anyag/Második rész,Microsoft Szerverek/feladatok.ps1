@@ -128,7 +128,8 @@ $userkeresoroot = "OU=gandorUsers,DC=gandor,DC=local"
 $groupkeresoroot = "OU=gandorGroups,DC=gandor,DC=local"
 $computerkeresoroot = "OU=gandorComputers,DC=gandor,DC=local"
 
-$outfile = "C:\Peldashare\"+$sorszamom+"Users$mostvan.txt" #az útvonalat (C:\Peldashare\) javítani kell, a fájl neve maradjon
+$outfile = "C:\Peldashare\"+$sorszamom+"Users$(mostvan).txt" #az útvonalat (C:\Peldashare\) javítani kell, a fájl neve maradjon
+
 
 $mostvan = (Get-Date -Format FileDateTime).Substring(0,15)
 $logstring = @("","----------------------------------------------", "", "Név: $nevem","Sorszám :$sorszamom", "Készült: $mostvan") 

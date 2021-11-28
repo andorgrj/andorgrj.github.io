@@ -10,10 +10,35 @@ fájljogosultságok powershellel cikkek
 
 Kiválasztott mappára properties -> Security -> Advanced -> inheritance -> explicit -> edit -> details
 
+---------------------------------------------------------------------------------------------------------------
+Share cuccok megtekintése
+
+\\gandorWS2019\c$
+vagy
+Start menü jobb gomb -> Computer Management -> Shared folders
+vagy
+Active Directory Users and Computers -> File and Storage Services -> Shares
+
+----------------------------------------------------------------------------------------------------------------
+Share készítése
+
+Mappa készítése -> Properties -> Share -> Advanced Sharing -> Permissions -> everyonet törölni -> authenticated usereket helyébe
 
 
 
---------------------------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------------------------
+
+Sharing Stop
+
+Active Directory Users and Computers -> File and Storage Services -> Shares -> jobb egér -> Stop sharing
+
+Jogosultsággal nem rendelkező mappa elrejtése a felhasználó elől:
+
+mappa nevén jobb egér -> Properties -> Settings -> Enable access based enumeration
+
+---------------------------------------------------------------------------------------------------------------
 <#
 Remember, you have two types of permission with shares
 

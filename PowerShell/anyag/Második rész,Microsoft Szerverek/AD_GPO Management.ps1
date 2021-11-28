@@ -50,6 +50,10 @@ https://www.prajwaldesai.com/active-directory-recycle-bin-ad-recycle-bin/
 
 
 Get-ADObject -filter 'isDeleted -eq $true -and name -ne "Deleted Objects"' -includeDeletedObjects
+------------------------------------------------------------------------------------------------------------
+Kvóta létrehozása
+
+C:\ tulajdonságok -> kvóta -> beállítások megjelenítése -> kvótabejegyzések -> új kvóta
 
 
 ------------------------------------------------------------------------------------------------------------
