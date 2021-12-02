@@ -11,6 +11,7 @@ reboot                          - reboot parancs
 shutdown -r now                 - kikapcsolás
 history                         - eddig általam beírt parancsok kilistázása
 shopt                           - bash beállítások
+postfix                         - tab kiegészíti a parancsot
 
 ls --help                       - kapcsolók megtekintése
 
@@ -24,10 +25,27 @@ source source.txt
 echo $valtozo2
 set | grep valtozo2             - teljeset kiírja
 grep -n World textfile.txt      - keresés a fájlban https://linuxhint.com/find_text_in_files_linux/
+echo $?                         - előző parancs visszatérési értéke
+man ls                          - parancs felhasználói kézikönyve
+ls -l /vvv && echo "van ilyen könyvtár" || mkdir /vvv - könyvtár ellenőtzése, ha nincs létrehozása
+echo neger > testfile.txt       - fileba ír
+echo neger >> testfile.txt      - file utolsó sorához hozzáfűzi
+ls -l /boot/hhh > /dev/null 2>&1 - minden futás közben keletkezett üzenet eltüntetése
+ps ax                           - futó folyamatok kilistázása
+ls -l /                         - könyvtárak kilistázása
+
+
+
 
 history - korábban beírt parancsok
 history | head -n 3 && history | tail -n 3 - historyban keresés és szűrés
 ls --help                       - kapcsolók megtekintése
+passwd --help
+mc -h
+man -?
+whereis ls                      - hol található az ls
+ls -l   -d                      - d a könyvtárak listázását jelenti
+
 
 mcedit .bashrc                  - aliasok szerkesztése
 type pp - 
