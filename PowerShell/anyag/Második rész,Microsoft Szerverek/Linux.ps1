@@ -32,29 +32,75 @@ echo neger > testfile.txt       - fileba ír
 echo neger >> testfile.txt      - file utolsó sorához hozzáfűzi
 ls -l /boot/hhh > /dev/null 2>&1 - minden futás közben keletkezett üzenet eltüntetése
 ps ax                           - futó folyamatok kilistázása
-ls -l /                         - könyvtárak kilistázása
+ls -l /                         - könyvtárak kilistázása az egész fájlrendszerben
+man hier                        - man hierachiája
+cat /proc/cpuinfo               - cpu információk
+
+User és group kezelés ----------------------------------------------------------------------------------------------------------------------------
+
+whereis passwd                  - hol van a passwd
+nano /etc/passwd                - account infokat tárol
+useradd --help                  - user add kapcsolók
+useradd testuser1               - felhasználó hozzáadása
+deluser                         - felhasználó törlése
+userdell -r                     - more secure user delete
+sudo delgroup                   - csoport törlése
+sudo chgrp testuser4 mergefile.txt - file csoportfelhasználóját módosítja
+
+feladat:-----------------------------------------------------------------------------------------
+mkdir grouptestdir
+mkdir /grouptestdir/grouptestsubdir
+touch file{1..}
+groupadd grouptest 
+useradd testuser
+
+chgrp -R grouptest grouptestdir/
+cd/grouptestdir
+chgrp grouptest grouptestdir
+ls -lah
+
+Könyvtárműveletek ---------------------------------------------------------------------------------
+
+pwd                             - kiírja, hogy melyik könyvtárban vagyunk
+ls -a                           - fájlokat és a rejtett fájlt is megjeleníti
+mkdir -p mydir2/mysubdir2       - mappa és almappa létrehozása ->-p létrehozza a szülő könyvtárat is
+rmdir                           - könyvtár törlése
+rmdir -p mydir2/mysubdir2       - rekurzívan töröl a -p
+---------------------------------------------------------------------------------------------------
+
+sudo -visudo
+groupadd testgroup              - csoport létrehozása
+sudo useradd -g testgroup groupuser - csoportba ad felhasználót
+nmcli
+iftop
+ps                              - futó folyamatok
+free
+df
+df -h
+
+Fájlműveletek -------------------------------------------------------------------------------------------------------------------------
 
 
-
-
-history - korábban beírt parancsok
-history | head -n 3 && history | tail -n 3 - historyban keresés és szűrés
-ls --help                       - kapcsolók megtekintése
+history                                         - korábban beírt parancsok
+history | head -n 3 && history | tail -n 3      - historyban keresés és szűrés
+ls --help                                       - kapcsolók megtekintése
 passwd --help
 mc -h
 man -?
-whereis ls                      - hol található az ls
-ls -l   -d                      - d a könyvtárak listázását jelenti
+man -ls                                         - ls manualjai
+whereis ls                                      - hol található az ls
+ls -ld testdir                                  - csak a testdir könyvtár kilistázását jelenti
+ls -lh /etc/passwd                              - -h kapcsoló a méretet jeleníti meg
 
 
-mcedit .bashrc                  - aliasok szerkesztése
+mcedit .bashrc                                  - aliasok szerkesztése
 type pp - 
 
-ls - l -a                       - mappák kilistázása   
+ls - l -a                                       - mappák kilistázása, még a rejtetteké is / rejtettek ponttal kezdődnek   
 ls -lah
 ls -lah && echo "sikerült"
-ls - l --alapértelmezett        - minden fájlt kiír, a rejtetteket is
-chmod 453 textfile.txt          - fájl jogosultság beállítása
+ls - l --alapértelmezett                        - minden fájlt kiír, a rejtetteket is
+chmod 453 textfile.txt                          - fájl jogosultság beállítása https://chmod-calculator.com/
 
 
 cp testfile.txt copy_textfile.txt - file másolás
@@ -82,7 +128,7 @@ File engedélyek beállítása:
 https://www.guru99.com/file-permissions.html
 https://chmod-calculator.com/
 
-
+------------------------------------------------------------------------------------------------------------------------------
 
 
 könyvtár műveletek
