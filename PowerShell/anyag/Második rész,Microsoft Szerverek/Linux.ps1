@@ -14,6 +14,7 @@ shopt                           - bash beállítások
 postfix                         - tab kiegészíti a parancsot
 
 ls --help                       - kapcsolók megtekintése
+-r                              - rekurzív -> adott könyvtártól lefelé mindenhol végrehajta a kérést
 
 env                             - alapértelmezett változók kiíratása
 export valtozo1=neger           - változó létrehozása
@@ -61,7 +62,7 @@ ls -lah
 
 Könyvtárműveletek ---------------------------------------------------------------------------------
 
-pwd                             - kiírja, hogy melyik könyvtárban vagyunk
+pwd                             - kiírja, hogy melyik könyvtárban vagyunk jelenleg
 ls -a                           - fájlokat és a rejtett fájlt is megjeleníti
 mkdir -p mydir2/mysubdir2       - mappa és almappa létrehozása ->-p létrehozza a szülő könyvtárat is
 rmdir                           - könyvtár törlése
@@ -74,6 +75,9 @@ sudo useradd -g testgroup groupuser - csoportba ad felhasználót
 nmcli
 iftop
 ps                              - futó folyamatok
+ps -aux                         - futó folyamatok részletesebben
+pstree                          - futó folyamatok fa ábrán
+top                             - folyamatokról és erőforrásokról mutat ábrát
 free
 df
 df -h
@@ -85,13 +89,51 @@ history                                         - korábban beírt parancsok
 history | head -n 3 && history | tail -n 3      - historyban keresés és szűrés
 ls --help                                       - kapcsolók megtekintése
 passwd --help
-mc -h
+mc -h                                           - midnight commander help
 man -?
 man -ls                                         - ls manualjai
 whereis ls                                      - hol található az ls
 ls -ld testdir                                  - csak a testdir könyvtár kilistázását jelenti
 ls -lh /etc/passwd                              - -h kapcsoló a méretet jeleníti meg
+cp                                              - fájl másolás
+cp myfile myfile.copy_textfile                  - fájl másolása
+cp -a                                           - archív opció időbélyeg megtartásával másol
+cp -av                                          - archív és verbose -> időbélyeg és kiírja mit csinált /a -v kapcsolóval
+cp -av myfile mydir/mysubdir/myfile.copy        - myfilet másolja a mysubdirbe myfile.copy névvel
+mv                                              - fájl vagy könyvtár átnevezésére vagy áthelyezésére használjuk
+mv readme.txt/mydir2/mysubdir2                  - readme fájlt átrakja a mysubdir2-be
+file                                            - fájl típusát mutatja meg
+file /etc/passwd
+ln -s                                           - szimbólikus link létrehozása /miről hova
+ls -l                                           - fájl típusát lehet megnézni
+chown                                           - fájltulajdonos módosítás
+chgrp                                           - csoporttulajdonos módosítása
+chown :testers readme.txt                       - csoporttulajdonos módosítása
+chmod                                           - jogosultság módosítások
+groupadd                                        - csoport létrehozása
+head           head -5 /etc/passwd              - fájl első 10 sorát jeleníti meg / -2 vagy más számmal a sort lehet beállítani
+tail                                            - fájl utolsó 10 sorát jeleníti meg
+cat                                             - fájl tartalmát jeleníti meg
+tac                                             - visszafelé jeleníti meg a fájl tartalmát
+tail -f /var/log/messages                       - log fájl tartalmát jeleníti meg / -f mindig beleírja a legutolsót
 
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+Feladat
+fájlba írás 
+
+ls -l /www /boot
+ls -l /www /boot > stdout.txt
+cat stdout.txt
+ls -l /www /boot > stdout.txt 2> stderr.txt  ->    hibaüzenet külön fájlba továbbirányítása/kiírása
+cat stderr.txt
+
+ls -l /www /boot > stdall.txt 2>&1   -> a kettes üzenetet visszaírányítjuk az 1-be, így lesz egy fájl a hibaüzenettel
+
+
+grep bash$ /etc/passwd | cut -f1 -d: | sort -> felhasználókat keresi ki / első sorban lévő karakterekkel
+
+--------------------------------------------------------------------------------------------------------------------------------------------
 
 mcedit .bashrc                                  - aliasok szerkesztése
 type pp - 
