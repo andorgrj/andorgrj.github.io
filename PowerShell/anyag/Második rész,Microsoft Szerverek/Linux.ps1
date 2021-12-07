@@ -116,7 +116,7 @@ tail                                            - fájl utolsó 10 sorát jelen�
 cat                                             - fájl tartalmát jeleníti meg
 tac                                             - visszafelé jeleníti meg a fájl tartalmát
 tail -f /var/log/messages                       - log fájl tartalmát jeleníti meg / -f mindig beleírja a legutolsót
-
+rm -rf                                          - fájl törlése rekurzív force!
 -------------------------------------------------------------------------------------------------------------------------------------------
 
 Feladat
@@ -171,7 +171,31 @@ https://www.guru99.com/file-permissions.html
 https://chmod-calculator.com/
 
 ------------------------------------------------------------------------------------------------------------------------------
+Hardver monitorozás
 
+lsusb           - csatlakoztatott eszközök megtekintése
+ifconfig        -
+nmcli           - hálózathoz lehet csatlakozni
+iftop           - hálózati forgalmat lehet figyelni
+w               - bejelentkezett felhasználókat jeleníti meg
+who             - bejelentkezett felhasználókat jeleníti meg
+who -u          - ki van bejelentkezve process id-val látszik / process id-t lehet kikapcsolni pl. kill 1261
+top             - ki mit futtat a gépen/ mi fut a gépen
+history
+history -d      - adott sort lehet törölni /history -d 23
+history -c      - egész historyt törölni
+nano .bashrc    - aliasokat lehet itt megadni /more aliasok alatt
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------
 
 könyvtár műveletek
 cd change directory átlépés másik könytárba
