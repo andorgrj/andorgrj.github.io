@@ -61,7 +61,7 @@ fi
 exit 0
 
 -------------------------------------------------------------------
-CASE - felsorolás szerű, hogy milyen esetekben (itt pal kis és nagybetűk esetében)
+CASE - felsorolás szerű, hogy milyen esetekben (itt pl kis és nagybetűk esetében)
 
 #!/bin/bash
 
@@ -86,6 +86,7 @@ echo "Szerkesztési műveletek"
 esac
 
 ----------------------------------------------------------------
+Feladat - a megadott echok alapján végez műveletet
 #!/bin/bash
 
 echo "[O]vas"

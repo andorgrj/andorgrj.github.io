@@ -78,6 +78,8 @@ ps                              - futó folyamatok
 ps -aux                         - futó folyamatok részletesebben
 pstree                          - futó folyamatok fa ábrán
 top                             - folyamatokról és erőforrásokról mutat ábrát
+timedatectl                     -
+timedatectl set-timezone Europe/Bp - időzóna beállítása
 free
 df
 df -h
