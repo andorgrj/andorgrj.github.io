@@ -67,6 +67,12 @@ ls -a                           - fájlokat és a rejtett fájlt is megjeleníti
 mkdir -p mydir2/mysubdir2       - mappa és almappa létrehozása ->-p létrehozza a szülő könyvtárat is
 rmdir                           - könyvtár törlése
 rmdir -p mydir2/mysubdir2       - rekurzívan töröl a -p
+
+chown username file1 file2 ...
+chown -R username somedir
+chgrp groupname file1 file2 ....
+chgrp -R groupname somedir
+chown username:groupname file1 file2 ...
 ---------------------------------------------------------------------------------------------------
 
 sudo -visudo
@@ -191,11 +197,21 @@ nano .bashrc    - aliasokat lehet itt megadni /more aliasok alatt
 
 -------------------------------------------------------------------------------------------------------------------------------
 
-
-
-
-
-
+cat /etc/fstab -meghajtó felcsatlakoztatása
+dev könyvtárban a külső belső adathordozókat kezeljük
+etc - konfiguráció
+opt - dockert ide szokták
+tmp - törlődik amit ide ment
+cat /etc/resolv.conf
+apt install xorg - x-server -> grafikus felület linuxra
+xfce - grafikus környezet - szerverre is lehet telepíteni
+groups andor - andor csoport miknek a tagja
+script indítás ./name.sh
+chown :group szerelok
+chown szerelok1: howork.sh
+chown user:
+home könyvtár nélküli user nem tud sudozni, root jelszót ha nem tudja
+ffmpeg rakja össze a hangot és képet a letöltött videóhoz
 
 -------------------------------------------------------------------------------------------------------------------------------
 

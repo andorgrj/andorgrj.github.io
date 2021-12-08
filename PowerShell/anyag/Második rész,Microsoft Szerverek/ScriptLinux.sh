@@ -135,6 +135,28 @@ sudo passwd $username
 #a=`pwd`
 #echo $a
 
+--------------------------------------------------------------------
+
+
+
+mkdir –p szerelok/szerszam
+mkdir beszerzes
+mkdir management
+
+groupadd szerelok
+groupadd beszerzes
+groupadd management
+
+gpasswd -M szerelouser1,szerelouser2,szerelouser1 szerelok
+
+sudo adduser szerelouser1 --gecos --disabled-password
+echo "myuser:password" | sudo chpasswd
+sudo adduser szerelouser2 --gecos --disabled-password
+echo "myuser:password" | sudo chpasswd
+sudo adduser szerelouser3 --gecos --disabled-password
+echo "myuser:password" | sudo chpasswd
+
+
 
 --------------------------------------------------------------------
 Mentett állományok vizsgálata /find.sh -> jogosultságra és méretre szűr és a megadott névvel és helyre menti eredményt
@@ -149,6 +171,18 @@ echo “kész”
 
 
 --------------------------------------------------------------------
+FIND
+
+-perm jogosultságokra szűrés
+-name fájl/mappanévre szűrés 
+-type típusra szűrés például f fájl
+-size méretre szűrés:
+
+https://linuxconfig.org/how-to-use-find-command-to-search-for-files-based-on-file-size
+
+
+
+---------------------------------------------------------------------
 echo ""
 
 
