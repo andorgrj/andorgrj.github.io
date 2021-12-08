@@ -51,7 +51,7 @@ sudo chgrp testuser4 mergefile.txt - file csoportfelhasználóját módosítja
 feladat:-----------------------------------------------------------------------------------------
 mkdir grouptestdir
 mkdir /grouptestdir/grouptestsubdir
-touch file{1..}
+touch file{1..4}
 groupadd grouptest 
 useradd testuser
 

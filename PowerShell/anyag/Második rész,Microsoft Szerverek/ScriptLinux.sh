@@ -115,6 +115,40 @@ nano pelda.txt
 esac
 
 -------------------------------------------------------------------
+Felhasznaló létrehozás
+
+#!/bin/bash
+
+echo 'Felhasznalo nev'
+read name
+echo 'Homekonyvtar neve'
+read homedir
+#echo 'Jelszo' -> jelszó nem marad titkosítva
+#read pw
+sudo useradd -m -d /home/${homedir} -p ${pw} ${name}
+sudo passwd $username 
+
+
+#a=$(pwd)
+#echo $a
+
+#a=`pwd`
+#echo $a
+
+
+--------------------------------------------------------------------
+Mentett állományok vizsgálata /find.sh -> jogosultságra és méretre szűr és a megadott névvel és helyre menti eredményt
+
+#!/bin/bash
+datum=$(date -I)
+filename=”jog$datum”
+sudo find /home/perm 744 >> /home/andor/files/$filename
+filename=”meret$datum”
+sudo find /home/ -type file f -size +100c >/home/../files/$filename  #->100 bájtnál nagyobb fájlokat hozza ki
+echo “kész”
+
+
+--------------------------------------------------------------------
 echo ""
 
 
