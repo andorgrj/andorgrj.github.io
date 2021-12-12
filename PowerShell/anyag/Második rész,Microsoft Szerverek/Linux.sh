@@ -62,6 +62,8 @@ ls -lah
 
 Könyvtárműveletek ---------------------------------------------------------------------------------
 
+cd /                            - rootba lépés
+cd ~                            - home könyvtárba lépés
 pwd                             - kiírja, hogy melyik könyvtárban vagyunk jelenleg
 ls -a                           - fájlokat és a rejtett fájlt is megjeleníti
 mkdir -p mydir2/mysubdir2       - mappa és almappa létrehozása ->-p létrehozza a szülő könyvtárat is
@@ -100,6 +102,7 @@ passwd --help
 mc -h                                           - midnight commander help
 man -?
 man -ls                                         - ls manualjai
+du                                              - méretét adja ki
 whereis ls                                      - hol található az ls
 ls -ld testdir                                  - csak a testdir könyvtár kilistázását jelenti
 ls -lh /etc/passwd                              - -h kapcsoló a méretet jeleníti meg
@@ -120,7 +123,7 @@ chown :testers readme.txt                       - csoporttulajdonos módosítás
 chmod                                           - jogosultság módosítások
 groupadd                                        - csoport létrehozása
 head           head -5 /etc/passwd              - fájl első 10 sorát jeleníti meg / -2 vagy más számmal a sort lehet beállítani
-tail                                            - fájl utolsó 10 sorát jeleníti meg
+tail           tail -5                          - fájl utolsó 10 sorát jeleníti meg
 cat                                             - fájl tartalmát jeleníti meg
 tac                                             - visszafelé jeleníti meg a fájl tartalmát
 tail -f /var/log/messages                       - log fájl tartalmát jeleníti meg / -f mindig beleírja a legutolsót
@@ -168,9 +171,10 @@ cat testfile.txt testfile2.txt > mergedfile.txt   - fájl tartalmának összetű
 tac testfile.txt - fordítva olvassa vissza a fájlt
 tail - fájlban a megadott sort fogja kiírni
 
-wc -l mergedfile.txt hány sorból áll a fájl
-grep - 
-man - 
+wc              - l mergedfile.txt hány sorból áll a fájl
+wc -w           - szavakat számolja meg
+grep            - fájl tartalmában keres
+man             - 
 (head -n2 testfile.txt; tail -n2 textfile.txt) > mergedfile1.txt  - fájl összefűzés
 
 
@@ -182,6 +186,7 @@ https://chmod-calculator.com/
 Hardver monitorozás
 
 lsusb           - csatlakoztatott eszközök megtekintése
+lscpu           - gépinformációk
 ifconfig        -
 nmcli           - hálózathoz lehet csatlakozni
 iftop           - hálózati forgalmat lehet figyelni
@@ -200,6 +205,7 @@ nano .bashrc    - aliasokat lehet itt megadni /more aliasok alatt
 cat /etc/fstab -meghajtó felcsatlakoztatása
 dev könyvtárban a külső belső adathordozókat kezeljük
 etc - konfiguráció
+lib - fájlokat tartalmaz pl dll
 opt - dockert ide szokták
 tmp - törlődik amit ide ment
 cat /etc/resolv.conf

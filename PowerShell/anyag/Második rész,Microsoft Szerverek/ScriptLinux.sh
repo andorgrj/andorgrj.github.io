@@ -136,8 +136,102 @@ sudo passwd $username
 #echo $a
 
 --------------------------------------------------------------------
+Manage-users scriptek
 
 
+# Excercise 1 - Create directory structure
+sudo mkdir -p /etc/custom-skel/finance
+sudo mkdir -p /etc/custom-skel/hr
+sudo mkdir -p /etc/custom-skel/dev
+
+# Excercise 2a - Create "Welcome.txt" in department folder
+echo "Welcome to finance department!" > /etc/custom-skel/finance
+
+# Excercise 2b - Create "Welcome.txt" in department folder
+echo "Welcome to HR department!" > /etc/custom-skel/hr
+
+# Excercise 2c - Create "Welcome.txt" in department folder
+echo "Welcome to dev department!" > /etc/custom-skel/dev
+
+# Excercise 3 - Create 3 user groups
+sudo groupadd finance
+sudo groupadd hr
+sudo groupadd dev
+
+# Excercise 4 - Create users
+sudo useradd --password D3v01 --gid dev --create-home --skel /etc/custom-skel/dev dev1
+sudo useradd --password D3v01 --gid dev --create-home --skel /etc/custom-skel/dev dev2
+sudo useradd --password F1N01 --gid finance --create-home --skel /etc/custom-skel/finance fin1
+sudo useradd --password HR123 --gid hr --create-home --skel /etc/custom-skel/hr hr1
+
+# Excercise 5 - Add dev users to sudo group
+usermod -aG sudo dev1
+usermod -aG sudo dev2
+
+
+---------------------
+
+for grp in szerelok beszerzes management;
+do
+  sudo groupadd --force --system $grp
+  for usr in 1 2 3
+  do
+    sudo useradd --comment $grp$usr --home-dir /home/$grp/$grp$usr --create-home $grp$usr
+  done;
+done;
+
+sudo apt-get update && sudo apt-get install acl -y
+
+sudo mkdir -p /home/szerelok/szerszam && sudo setfacl-Rdm u::-,group:szerelok:rw,group:management:rw,o::- /home/szerelok/szerszam
+sudo mkdir -p /home/beszerzes && sudo setfacl -Rdm u::-,group:beszerzes:rw,group:management:rw,o::- /home/szerelok/szerszam
+sudo mkdir -p /home/management && sudo chown :management /home/management && setfacl -Rdm u::-,group:beszerzes:rw,group:management:rw,o::- /home/management
+
+---------------------
+
+#!/bin/bash
+
+# Excercise 1/2 - Create directory structure, create Welcome.txt
+for dept in {finance,hr,dev}
+do
+  sudo mkdir -p /etc/custom-skel/${dept}
+
+  if [ "$dept" = "hr" ]; then
+    echo "Welcome to ${dept^^} department!" > /etc/custom-skel/${dept}/"Welcome.txt"
+  else
+    echo "Welcome to ${dept} department!" > /etc/custom-skel/${dept}/"Welcome.txt"
+  fi
+  chmod 644 /etc/custom-skel/${dept}/"Welcome.txt"
+done
+
+# Excercise 3 - Create usergroups
+for d in {finance,hr,dev}
+do
+  sudo groupadd ${d}
+done
+
+# Excercise 4 - Create users 
+
+# Same array index reprezents one user's data. 
+USERNAMES=("dev1" "dev2" "fin1" "hr1")
+USERPWDS=("D3v01" "D3v01" "F1N01" "HR123")
+USERGRPS=("dev" "dev" "finance" "hr")
+SKELDIRS=("/etc/skel/dev" "/etc/skel/dev" "/etc/skel/dev" "/etc/skel/hr")
+
+ALEN=${#USERNAMES[@]}
+
+# Iterate through the data arrays and create user according to arrays indexes
+for (( i=0; i < $ALEN; i++ ))
+do
+  sudo useradd --password ${USERPWDS[$i]} --gid ${USERGRPS[$i]} --create-home --skel ${SKELDIRS[$i]} ${USERNAMES[$i]}
+
+  # Excercise 5 - Add dev users to sudo group
+  if [[ ${USERNAMES[$i]} == dev* ]]; then
+    usermod -aG sudo ${USERNAMES[$i]}
+  fi
+done
+
+
+-----------------------------------------------------------------------------------------
 
 mkdir –p szerelok/szerszam
 mkdir beszerzes
@@ -148,6 +242,8 @@ groupadd beszerzes
 groupadd management
 
 gpasswd -M szerelouser1,szerelouser2,szerelouser1 szerelok
+
+useradd -md - m létrehoza a home könyvtárat, -d kijelöli
 
 sudo adduser szerelouser1 --gecos --disabled-password
 echo "myuser:password" | sudo chpasswd

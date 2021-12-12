@@ -72,7 +72,7 @@ Port -> .nsg-ben/Network Security Group -> Bejövő biztonsági szabályok -> 80
 Ping -> engedélyezése -> .nsg-ben -> Inbound Security Rules -> Add ICMP
 Firewall -> advanced settings -> Inbound Rules -> Virtual Machine Monitoring IPV4/6 and File and Printer Sharing (Echo Request –ICMPv4-In -> Set Enable
         https://www.rootusers.com/how-to-enable-ping-in-windows-server-2019-firewall/
-WebServer tartalmának módosítása -> IIS -> Server\Sites\Default Sites\Explore\  ->  ThisPC\Windows\inetpub\wwwroot
+WebServer tartalmának módosítása -> IIS -> Server\Sites\Default Sites\Explore\  ->  ThisPC\Windows\inetpub\wwwroot -> html fájl jobbegér open with/szerkesztés notepadban és ide lehet berakni a kódot
 CTRL+ALT+End -> Task Manager
 
 ----------------------------------------
