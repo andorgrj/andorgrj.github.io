@@ -136,6 +136,73 @@ sudo passwd $username
 #echo $a
 
 --------------------------------------------------------------------
+Manage computer
+
+#!/bin/bash
+
+# Excercise 1 - Print actual date
+echo -e "\n--- Current date ---------------------------"
+echo -e $(date +"%F")
+
+# Excercise 2 - Print host name
+echo "\n--- Hostname -------------------------------"
+hostname
+
+# Excercise 3 - Print IP address of any network interface
+echo "--- Default NIC IPv4 address ---------------"
+sudo ifconfig $(ip -o -4 route show to default | awk '{print $5}') | grep 'inet'
+
+# Excercise 4 - Print available storage spaces / memory
+echo "\n--- Storage and memory info ----------------"
+sudo df -h
+sudo free -h
+
+# Excercise 5 - Print CPU type
+echo "\n--- CPU model ------------------------------"
+sudo cat /proc/cpuinfo | grep 'model name' | head -1 | cut -d':' -f 2
+
+# Excercise 6 - Print syslog last 5 lines
+echo "\n--- Last 5 system event --------------------"
+sudo cat /var/log/syslog | tail -5
+
+# Excercise 7 - Print last 10 logins in descending time order
+echo "\n--- Last 10 logons -------------------------"
+sudo last -a | head -10
+
+# Excercise 8 - Print currently logged in users
+echo "\n--- Currently logged in users --------------"
+sudo users
+
+
+--------------------------------------------------------------------
+Fizzbuzz
+
+#!/bin/sh
+
+i=1
+while [ $i -lt 101 ]
+do
+
+  TEXT=""
+  if [ $(($i%3)) = "0" ]
+  then
+    TEXT="Fizz"
+  fi
+
+  if [ $(($i%5)) = "0" ]
+  then
+    TEXT=$TEXT"Buzz"
+  fi
+
+  if [ "$TEXT" != "" ]
+  then
+    echo $i": "$TEXT
+  fi
+  i=$(( $i + 1 ))
+done
+
+
+--------------------------------------------------------------------
 Manage-users scriptek
 
 
