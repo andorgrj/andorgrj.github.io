@@ -13,27 +13,31 @@ mkfifo pipe
 ls -lh pipe
 tail -F pipe
 
-while :; do date > pipe ; sleep ls > done &
+while :; do date > pipe ; sleep 1s ; done &
 jobs
-fg
+fg - forgroundba küldöm a jobot
 cat pipe
-bg
+bg - backgroundba küldöm a jobot
 cat pipe
 
 kill %1 -utolsó jobot bezárja
 
 rm -rf a* b* c*  - rm törlés haladó változat
 
-rm -r  - remove rekurzívan, teljes mappát és almappát tartalommal törli
+rm -r  - remove rekurzívan, teljes mappát és almappát tartalommal együtt törli
 
 touch d/e - d-ben hozza az e-t létre
 chmod -w d/e - writeot elvesszük tőle
 
 rm -rf - force rekurzív eltávolítás
+rm - i - megkérdezi törlés előtt a törlést
 
 ls -lh /var/log
 ls -lhS - méret szerint rendezi a fájlokat
 ls -lht - t módosítás ideje szerint rendezi a fájlokat
+ls -lha - rejtett fileokat is megmutatja
+ls -lh --group-directories-first /var/log - minden könyvtár a lista elejére kerül, utána jönnek a fájlok
+
 
 másolás:
 touch g 
@@ -41,15 +45,27 @@ ls -lh
 cp g h
 ls -lh
 rm g h
-cp -a - mindent másol rekurzívan
+cp -a - mindent másol rekurzívan, még a fájl jogosultságokat is 
 
 mv i n - átnevezés: iből n lett
+mv * o - mindent az o könyvtárba tesz be
+
 
 mv j/k n/ - felülírja 
 
-chgrp - csoportját tudom átállítani 
-chown csoport:tulajdonos 
-chown :tulajdonos - jogosultság állítás 
+
+tulajdonos az első, csoport a második
+chgrp - csoportját tudom átállítani
+chown - tulajdonost lehet módosítani 
+chown tulajdonos:csoport  - a tulajdonost és csoportot egyszerre megadva lehet módosítani kettősponttal
+chown :csoport - jogosultság állítás csak a csoportra vonatkozóan a kettőspont után
+
+chmod -r - olvasás jogot veszem el
+chmod +r - olvasás jogot adom hozzá
+chmod u/user g/group o/others - jogokat lehet módosítani
+
+
+
 
 ls -lhd /tmp - -d kapcsoló a könytárat listázza nem a tartalmát
 
@@ -57,9 +73,7 @@ mkdir p
 date > p/q
 cat p/q
 ls -lh
-chmod -r - olvasás jogot veszem el
-chmod +r - olvasás jogot adom hozzá
-chmod u/user g/group o/others - jogokat lehet módosítani
+
 
 umask - itt lehet állítani a létrejövő fájl jogosultságait
 
@@ -69,16 +83,18 @@ tree -h - ember által olvasható méret formában mutatja
 find - könytárakat, fájlokat kiírja
 find -type d - könyvtár típusú fájlokat listázza k
 find -cmin +60 - legalább 60 perce módosított fájlokat írja ki
-find -cmin -10
-find /var/log -ctime -1 - elmúlt 1 napban módosult fájlokat írja ki
-find /var/log -atime -1 - file access timeot írja ki
-find /var/log -mmin -300 - módosult fájlok listája
-
-
-find -user root - root userek megkeresése
-find -group sudo
+find -cmin -10 - 10 percen belül módosított fájlokat keresi
+find -ctime -1 - elmúlt 1 napban módosult fájlokat írja ki
+find -atime -1 - file access timeot írja ki
+find -mmin -300 - módosult fájlok listája
+find -user andor - andor nevű tulajdonost keresi meg
+find -group sudo - sudo csoportot keresi meg
 find -print
 {} \; - összes fájlt jelenti tömeges módosításhoz
+find -group andor -exec chgrp sudo {} \;
+
+
+
 
 szimblikus linkek - nem lehet állítani a jogosultságát
 touch y
