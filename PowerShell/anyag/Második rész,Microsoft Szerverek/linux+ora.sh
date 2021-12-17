@@ -98,6 +98,12 @@ find -group andor -exec chgrp sudo {} \;
 
 szimblikus linkek - nem lehet állítani a jogosultságát
 touch y
+ln - szimbólikus link létrehozása
+echo * - csillag az összes karaktert helyettesíti, keresi
+ls -lh a* - csillag az összes karaktert helyettesíti, keresi
+ls -lh a? - ? egy konkrét karaktert helyettesít
+
+
 ln -s y z
 ls -lh
 date y
@@ -126,6 +132,7 @@ history
 !! - utoljára kiadott parancsot ismételi meg
 !t:p - utolsó t vel kezdődő parancsot írja ki
 
+
 echo $home
 echo {HOME}1
 
@@ -133,6 +140,11 @@ date > e
 cat e
 1 - standard output
 2 - standard error
+ls -lh a ab abc >e - egyes üzenet átirányítása
+ls -lh a ab abc >e 2>&1 - egyes és kettes üzenet egy fájlba írányítása
+&>e - összes üzenet egy fájlba irányítása
+
+
 
 ls -lh a ab
 
