@@ -151,14 +151,18 @@ ls -lh a ab
 
 átirányításokat fordítva hajtja végre
 
-ls -lh a ab ; echo hello - mindkét parancsot kiadja
-|| vagy 
-&& 
+Több parancs egybefűzése:
+ls - lh a ab ; echo hello - mindkét parancsot kiadja
+;  - parancs elválasztása, mindkettőt kiadja
+|| - akkor futtatom a második parancsot ha az első eredménye nem jó
+&& - második csak akkor fut le ha az első parancs sikeres
 
 
 find > results
-grep k results
-grep -i k results
+grep k results      - results nevűben a k-t keresi meg
+grep -i k results   - kis és nagy betűs k-t keres
+grep -v k results   - azokat a fájlokat keresi amiben nincs k
+
 touch K
 find -v K - -v-vel az olyat keresi amiben nincs "nagy K"
 grep -r
@@ -167,16 +171,26 @@ head /etc/passwd
 head -5
 tail 
 tail -5
-tail -f /var/log/syslog - e mappa tartalmát folyamatossan kiírja
-tail -F  - nagy f a fájlt határozza meg
+tail -F             - mappa tartalmát folyamatossan kiírja
+tail -F             - nagy f a fájlt határozza meg
 less
 cut
 
-tar - tömörít
+tar cf - egybefűzi a fájlt?
 gzip - összetömörít és az eredetit törli
 gunzip - kicsomagol
 
-du - disk usage
-du -shc *
-du -shc /var/log/* | sort -hr - fájlok méretét adja meg 
-ncdu - érdemes telepíteni
+du                              - disk usage
+du -shc *                       - disk usage olvasható mérettel
+du -shc | sort -hr              - fájlok méretét adja meg rendezett formában
+ncdu                            - grafikus felülettel jeleníti meg a fájlméreteket
+df                              - foglaltság állapota
+df -h                           - foglaltság byte-ban
+
+
+
+ctrl + a  - legeleje
+ctrl + e  - legvégére
+ctrl + u  - elejéig visszatöröl
+ctrl + w  - szavanként töröl visszafelé
+ctrl + k  - sor végét törli
