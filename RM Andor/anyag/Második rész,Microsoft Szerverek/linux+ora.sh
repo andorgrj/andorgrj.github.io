@@ -1,6 +1,6 @@
-ctrl + l  - törli a képernyőt
-ctrl + r - historyban keres visszafelé
-
+ctrl + l    - törli a képernyőt
+ctrl + r    - historyban keres visszafelé
+sudo -K     - timecache-t törli (újra be kell jelszót írni)
 
 d - könyvtár
 l - szimbolikus link
@@ -32,11 +32,11 @@ chmod -w d/e - writeot elvesszük tőle
 rm -rf - force rekurzív eltávolítás
 rm - i - megkérdezi törlés előtt a törlést
 
-ls -lh /var/log
+ls -lh  - /var/log
 ls -lhS - méret szerint rendezi a fájlokat
 ls -lht - t módosítás ideje szerint rendezi a fájlokat
 ls -lha - rejtett fileokat is megmutatja
-ls -lh --group-directories-first /var/log - minden könyvtár a lista elejére kerül, utána jönnek a fájlok
+ls -lh  --group-directories-first /var/log - minden könyvtár a lista elejére kerül, utána jönnek a fájlok
 
 
 másolás:
@@ -55,8 +55,8 @@ mv j/k n/ - felülírja
 
 
 tulajdonos az első, csoport a második
-chgrp - csoportját tudom átállítani
-chown - tulajdonost lehet módosítani 
+chown - tulajdonost lehet módosítani
+chgrp - csoportját tudom átállítani 
 chown tulajdonos:csoport  - a tulajdonost és csoportot egyszerre megadva lehet módosítani kettősponttal
 chown :csoport - jogosultság állítás csak a csoportra vonatkozóan a kettőspont után
 
@@ -162,6 +162,9 @@ find > results
 grep k results      - results nevűben a k-t keresi meg
 grep -i k results   - kis és nagy betűs k-t keres
 grep -v k results   - azokat a fájlokat keresi amiben nincs k
+egrep 'o{2,3}'      - 2-3 betűs o-kat keresi a sorokban
+-i                  - key sensitiveséget tűnteti el
+
 
 touch K
 find -v K - -v-vel az olyat keresi amiben nincs "nagy K"
