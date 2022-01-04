@@ -38,3 +38,14 @@ index fájl szerkesztése win:
 PS C:\users\andor> echo hello > index.html
 PS C:\users\andor> ls
 PS C:\users\andor> docker cp .\index.html my-nginx-server-w-port:/usr/share/nginx/html      - index.html módosítása másolással 
+
+
+docker image build:
+
+docker image build ./
+docker image build -t my-java-server:0.0.1 ./           - elnevezést ad neki a - t-vel : a verziószám
+docker image build -t echobean/my-java-server:0.0.1 ./  - névtér alá rakom és így lehet majd publikálni
+docker image push echobean/my-java-server:0.0.1
+docker run -d --name my-java-server -p 8080:8080 echobean/my-java-server:0.0.1
+docker login
+

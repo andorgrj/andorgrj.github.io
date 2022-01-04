@@ -1,4 +1,4 @@
-FROM openjdk:11.0.9.1-jre
+FROM openjdk:11.0.13-jre-slim-buster
 LABEL maintainer=”zeremail15@gmail.com”
 RUN mkdir /app
 COPY ./my-server.jar /app
