@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+    java-app:
+        image: magyarattila90/my-java-app:0.1
+        ports:
+        - "8081:8080"
+        networks: 
+        - java-app-network
+        volumes:
+        - "java-app-volume:/usr/"
+networks:
+    java-app-network:
+volumes:
+    java-app-volume:

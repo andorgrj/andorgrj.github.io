@@ -26,7 +26,7 @@ imageből konténer a gyakorlatban:
 docker image pull nginx:1.21.5-alpine                                                       - image telepítése
 docker run --name my-nginx-server -d nginx:1.21.5-alpine                                    - my nginx server nevet adok neki és futtatom szolgáltatásként a háttérben -d vel 
 docker exec -it my-nginx-server sh                                                          - inside terminal sh parancssal linux terminal a konténerbe belépve
-docker run --name my-nginx-server-w-port -p 60080:80 -d nginx:1.21.5-alpine                 - port megnyitása portátirányítással
+docker run --name my-nginx-server-w-port -p 60080:80 -d nginx:1.21.5-alpine                 - port megnyitása portátirányítással -> -p -vel lehet a portot beállítani
 
 index fájl szerkesztése unix:
 
