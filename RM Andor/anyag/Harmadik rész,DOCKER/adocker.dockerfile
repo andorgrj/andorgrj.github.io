@@ -12,7 +12,10 @@ docker logs <container name> -f - logokat folyamatosan jeleníti meg
 docker exec     - a konténeren belül tudunk különféle parancsokat lefuttatni
 
 docker rmi <image-name:tag> / <img-id>           - image törlése
+docker rmi $(docker image ls -q)                 - összes image törlése
 docker rm <container-name> / <container-id>      - konténer törlése
+docker rm $(docker ps -aq)                       - összes konténer törlése
+-f -> force
 
 docker image pull <image-name:image-tag>         - A Docker HUB-ról / repositoryból / registryből tudunk lehúzni tetszőleges imageket
 
@@ -43,9 +46,9 @@ PS C:\users\andor> docker cp .\index.html my-nginx-server-w-port:/usr/share/ngin
 docker image build:
 
 docker image build ./
-docker image build -t my-java-server:0.0.1 ./           - elnevezést ad neki a - t-vel : a verziószám
+docker image build -t my-java-server:0.0.1 ./           - elnevezést ad neki a - t-vel :a verziószám .-az belépett mappából
 docker image build -t echobean/my-java-server:0.0.1 ./  - névtér alá rakom és így lehet majd publikálni
+docker run -d -p 8080:8080 echobean/my-java-server:0.0.1
 docker image push echobean/my-java-server:0.0.1
-docker run -d --name my-java-server -p 8080:8080 echobean/my-java-server:0.0.1
 docker login
 

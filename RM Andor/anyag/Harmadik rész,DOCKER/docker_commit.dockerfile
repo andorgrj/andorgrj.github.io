@@ -1,7 +1,7 @@
 DOCKER COMMIT - futó konténerből imaget csinálunk majd a konténerben változtatunk valamit és a változást commitoljuk
 
 docker image ls
-docker run -d -p 8080:8080 magyarattila90/my-java-app:0.1
+docker run -d -p 80:80 echobean/andor-java-app:0.0.1
 docker ps
 docker exec -it determined_johnson bash
 touch /hello.txt
