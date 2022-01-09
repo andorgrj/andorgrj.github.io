@@ -39,6 +39,7 @@ cat /proc/cpuinfo               - cpu információk
 
 User és group kezelés ----------------------------------------------------------------------------------------------------------------------------
 
+sudo-i                          - root felhasználóba lépés
 whereis passwd                  - hol van a passwd
 nano /etc/passwd                - account infokat tárol
 useradd --help                  - user add kapcsolók

@@ -1,6 +1,7 @@
 docker version
 docker info
 docker stats
+docker search nginx
 
 docker run hello-world - létező image a hubon amit letölt
 
