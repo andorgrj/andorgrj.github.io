@@ -16,6 +16,7 @@ docker rmi <image-name:tag> / <img-id>           - image törlése
 docker rmi $(docker image ls -q)                 - összes image törlése
 docker rm <container-name> / <container-id>      - konténer törlése
 docker rm $(docker ps -aq)                       - összes konténer törlése
+docker image prune                               - összes nem használt imagefájl törlése
 -f -> force
 
 docker image pull <image-name:image-tag>         - A Docker HUB-ról / repositoryból / registryből tudunk lehúzni tetszőleges imageket
