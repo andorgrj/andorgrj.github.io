@@ -10,6 +10,7 @@ DROP TABLE - deletes a table
 CREATE INDEX - creates an index (search key)
 DROP INDEX - deletes an index
 
+DISTINCT    - SELECT different values 
 
 
 
@@ -20,3 +21,6 @@ DROP TABLE TableDemo2
 CREATE TABLE DemoTabla2 (
 	Sorszam int
 )
+
+USE AdventureWorks2019
+SELECT * FROM [Production].[Product]
