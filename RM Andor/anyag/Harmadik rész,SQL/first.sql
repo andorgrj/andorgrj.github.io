@@ -12,6 +12,11 @@ DROP INDEX - deletes an index
 
 DISTINCT    - SELECT different values 
 
+Name as 		- más nevet lehet neki adni
+<> 				- nem egyenlő
+!=				- nem egyenlő
+>=				- nagyobb vagy egyenlő
+<=				- kisebb vagy egyenlő
 ---------------------------------------------------------------------
 
 USE Demo
@@ -29,7 +34,10 @@ SELECT *
 FROM Production.Product as P					-> as P a táblázat hosszú neve rövidítve
 WHERE P.Color = 'RED' OR P.Color = 'Black';
 WHERE (P.Color = 'RED' OR P.Color = 'Black') AND P.ListPrice > 1000;
-WHERE P.Name LIKE '%Washer%' OR P.Name = 'Flat Washer 2';
+WHERE P.Name LIKE '%Washer%' OR P.Name = 'Flat Washer%';
+WHERE P.Name LIKE '%Washer%'                    -> %-al adott szövegrészre kereshetünk rá LIKE kell elé, nem egyenlőségjellel
+WHERE P.Name LIKE '%Washer%' 
+WHERE P.Name LIKE '_lat Washer%'
 
 SELECT *
 FROM Production.Product as P
@@ -45,13 +53,24 @@ WHERE DAY(P.SellStartDate) = 30;
 SELECT P.Name, P.Color
 FROM Production.Product as P
 WHERE P.Color = 'Red' OR P.Color = 'Black';
-több szín felsorolása
-WHERE P.Color IN ('Red', 'Black', 'Green');
+WHERE P.Color IN ('Red', 'Black', 'Green');   -> több szín felsorolása
 
 SELECT P.Name, P.Color, P.ListPrice
 FROM Production.Product as P
 WHERE P.Color IN ('Red','Black');
 AND P.ListPrice BETWEEN 1000 AND 2000;
+
+
+SELECT P.Name, P.Color
+FROM Production.Product as P
+WHERE P.Color = 'Red';
+
+WHERE P.Color = 'Red' OR P.Color <> 'Red'
+
+WHERE P.Color IS NULL; 						- nullás sorokat adja vissza
+WHERE P.Color IS NOT NULL; 					- nem nullás sorokat adja vissza
+
+
 
 --------------------------------------------------------------------------------
 
