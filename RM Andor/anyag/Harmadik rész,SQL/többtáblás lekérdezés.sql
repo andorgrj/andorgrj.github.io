@@ -1,6 +1,6 @@
 /* Két tábla összekapcsolása: csak azok, ahol valóban megvan az ON szerinti
 	párosítás */
-SELECT P.ProductID, P.Name AS ProductName, PSC.Name AS SubcategoryName
+SELECT P.ProductID, P.Name AS ProductName, PSC.Name AS SubcategoryName							ON -> milyen oszlopok mentén akarom összepárosítani a két táblámat
 	FROM Production.Product P
 	JOIN Production.ProductSubcategory PSC
 		ON P.ProductSubcategoryID = PSC.ProductSubcategoryID;
@@ -8,7 +8,7 @@ SELECT P.ProductID, P.Name AS ProductName, PSC.Name AS SubcategoryName
 /* Két tábla összekapcsolása: ahol megvan az ON szerinti párosítás, vagy
 	azok a sorok a bal oldali táblából (ami a FROM után van), amihez nem
 	lehetett a jobb oldali táblából sort párosítani */
-SELECT P.ProductID, P.Name AS ProductName, PSC.Name AS SubcategoryName
+SELECT P.ProductID, P.Name AS ProductName, PSC.Name AS SubcategoryName							-> így beadja azokat a sorokat is, ahol null az érték
 	FROM Production.Product P
 	LEFT JOIN Production.ProductSubcategory PSC
 		ON P.ProductSubcategoryID = PSC.ProductSubcategoryID;
@@ -56,8 +56,26 @@ SELECT P.ProductID, P.Name, P.ListPrice
 	ORDER BY P.ListPrice ASC
 	OFFSET 0 ROWS
 	FETCH FIRST 15 ROWS ONLY;
+-------------------------------------------------------------------------------------------------------------------------
+CROSS JOIN helyett ON kapcsoló
+
+SELECT *
+	FROM Production.ProductCategory
+														/*-> ezt a két táblát CROSS JOINnal tudom összekapcsolni*/
+SELECT * 
+	FROM Production.ProductSubcategory
+
+SELECT * 
+	FROM Production.ProductCategory PC
+	CROSS JOIN Production.ProductSubcategory PSC;
+
+SELECT PC.Name, PSC.Name
+	FROM Production.ProductCategory PC
+	JOIN Production.ProductSubcategory PSC
+	ON PC.ProductCategoryID = PSC.ProductcategoryID;   /*-> az ON kiváltja a crosst és így ID-k alapján köti össze*/
 
 
+-------------------------------------------------------------------------------------------------------------------------
 
 
 SELECT *
