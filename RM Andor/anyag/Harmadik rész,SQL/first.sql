@@ -41,7 +41,7 @@ WHERE P.Name LIKE '_lat Washer%'
 
 SELECT *
 FROM Production.Product as P
-WHERE P.SellStartDate >= '2010-01-01T00:00:00.000'  -> szabványos formátuma az időlekérdezésnek
+WHERE P.SellStartDate >= '2010-01-01T00:00:00.000'  -> szabványos formátuma az időlekérdezésnek ISO
 AND P.SellStartDate <= '2012-12-31T23:59:59.000';
 
 SELECT *
