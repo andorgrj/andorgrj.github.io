@@ -61,3 +61,35 @@ last = 'Smith'
 message = first + ' [' + last + '] is a coder'
 msg = f'{first} [{last}] is a coder' #it is the formatted string
 print(message)
+
+#String variables
+
+course = 'Python for beginners'
+print(len(course))               #len is for to count the number of items in a list
+print(course.upper())            #. methods lehetőségek
+print(course.find('P'))          # find indexet keresi
+print(course.replace('beginners', 'Absolute beginners')) #replace things
+print('Python' in course)        # szöveget keres, hogy tartalmazza-e
+
+#Arithmetic operations
+
+x = 10
+x = x + 3
+x += 3
+x -= 3
+print(x)
+
+#Operator precedence
+
+x = 10 + 3 * 2          # ennek 16 az eredménye mert a szorzással kezdi a program a műveletet
+print(x)                # parenthesis, exponentiation, multiplication, addition a műveleti sorrend
+x = (10 + 3 * 2 ** 2)   # a zárójeles hamarabb elvégződik
+
+x = (2 + 3) * 10 - 3 
+print(x)
+
+#Math functions
+
+import math
+x = 2.9
+round(x)
