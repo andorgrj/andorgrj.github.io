@@ -51,6 +51,8 @@ SELECT P.Color, AVG(P.ListPrice) AS AveragePrice
 /* aggregate function-ök mûködnek GROUP BY nélkül is */
 SELECT MAX(P.ListPrice) FROM Production.Product P;
 
+SELECT SUM(P.ListPrice) FROM Production.Product P;
+
 /* Lehet több kategória szerint is csoportosítani */
 SELECT P.Color, P.Size, COUNT(P.ProductID) AS Quantity, SUM(P.ListPrice) AS SumPrice
 	FROM Production.Product P
