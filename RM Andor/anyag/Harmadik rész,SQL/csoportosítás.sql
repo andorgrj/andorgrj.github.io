@@ -23,7 +23,7 @@ SELECT P.Name, P.ListPrice / P.Weight AS UnitPrice
 -------------------------------------------------------------------------------------------------------
 /* COUNT: megszámolja az oszlopban hány nem null elem van
 	- praktikusan az elsõdleges kulcsra rakjuk gyakran */
-/* GROUP BY: a SELECT eredményét csoportosítja/összevonja a megadott oszlop alapján */
+/* GROUP BY: a SELECT eredményét csoportosítja/összevonja a megadott oszlop alapján, kategória szerint csoportosít */
 SELECT P.Color, COUNT(P.ProductID) AS Quantity
 	FROM Production.Product P
 	GROUP BY P.Color;
@@ -67,7 +67,7 @@ SELECT P.Color, P.Size, COUNT(P.ProductID) AS Quantity, SUM(P.ListPrice) AS SumP
 SELECT P.Color, AVG(P.ListPrice) AS AveragePrice
 	FROM Production.Product P
 	WHERE P.Name LIKE '%a%' -- ez a szûrési feltétel még az eredeti tábla oszlopaira
-	GROUP BY P.Color HAVING AVG(P.ListPrice) > 100; -- ez a feltétel az összesített adatokra
+	GROUP BY P.Color HAVING AVG(P.ListPrice) > 100; -- az összesített adatra szűr a having
 
 /* példa több táblás group by-re: pont ugyanúgy kell, mint egy táblás lekérdezésben */
 SELECT PSC.Name AS SubcategoryName, P.Color, COUNT(P.ProductID) AS Quantity

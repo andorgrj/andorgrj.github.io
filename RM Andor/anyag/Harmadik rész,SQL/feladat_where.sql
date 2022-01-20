@@ -66,3 +66,46 @@ WHERE YEAR(P.SellStartDate) >= 2012
 	AND P.Color IN ('Red', 'Blue', 'Black')
 	AND P.ListPrice BETWEEN 1000 AND 1400
 	AND P.Name LIKE '%Touring%';
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Jelenítsd meg a Product tábla ProductID, Name és ListPrice oszlopait! 
+
+SELECT ProductID, Name, ListPrice
+FROM Production.Product
+
+Jelenítsd meg a Product tábla Name mezőjét, mellette zárójelben jelenjen meg a termék azonosítója (ProductNumber), a második oszlopban a termék listaára (ListPrice), és végül az eladás kezdetének éve, hónapja és napja külön-külön oszlopban (SellStartDate). 
+
+SELECT Name + ' (' + ProductNumber + ') ', ListPrice, YEAR(SellStartDate),
+MONTH(SellStartDate), DAY(SellStartDate)
+FROM Production.Product
+
+Készíts lekérdezést, amely kigyűjti a Product tábla azon termékeit, ahol a Size paraméter “M” értékű. Az eredmény tábla tartalmazza a termék nevét (Name), számát (ProductNumber), színét (Color) és méretét (Size)!
+
+SELECT Name, ProductNumber, Color, Size
+FROM Production.Product
+WHERE Size = 'M'
+
+Gyűjtsd ki azon termékek nevét (Name),  listaárát (ListPrice) és eladásának kezdeti dátumát (SellStartDate), amelyek SellStartDate mezője 2013. június előttre esik!
+
+SELECT Name, ListPrice, SellStartDate
+FROM Production.Product
+WHERE SellStartDate < '20130601'
+
+Az előző lekérdezést módosítsd úgy, hogy az adatsorok rendezve legyenek az eladás kezdeti dátuma, azon belül pedig a listaár alapján!
+
+SELECT Name, ListPrice, SellStartDate
+FROM Production.Product
+WHERE SellStartDate < '20130601'
+ORDER BY SellStartDate, ListPrice
+
+Készíts lekérdezést, amely megjeleníti a nevét (Name), listaárát (ListPrice) és színét (Color) az összes terméknek, aminek a nevében szerepel a “Road” szöveg, és a színe piros vagy ezüst, esetleg fekete! 
+
+SELECT Name, ListPrice, Color
+FROM Production.Product
+WHERE Name LIKE '%Road%' AND Color IN ('Red', 'Silver', 'Black')
+
+Derítsük ki, hogy milyen értékei vannak a ProductLine oszlopnak! Nézzük meg, hogy azon belül milyen osztályúak lehetnek a termékek (Class)!
+
+SELECT DISTINCT ProductLine, Class
+FROM Production.Product
