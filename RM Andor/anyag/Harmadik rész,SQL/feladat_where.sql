@@ -109,3 +109,21 @@ Derítsük ki, hogy milyen értékei vannak a ProductLine oszlopnak! Nézzük me
 
 SELECT DISTINCT ProductLine, Class
 FROM Production.Product
+
+Jelenítsd meg a Person táblából a személyek neveit “Title FirstName MiddleName LastName” formátumban. Figyelj arra, hogy több helyen NULL értéket tárol a Title, vagy a MiddleName mező, ekkor ezt megfelelően kezeld, ne tartalmazzon felesleges szóközöket a végeredmény! 
+
+SELECT CONCAT (P.Title, ' ' + FirstName, ' ' + MiddleName, ' ' + LastName)
+	FROM Person.Person P;
+
+Jelenítsd meg azon termékek Name, Weight, SellStartDate és SellEndDate adatait, melyek az átlag súlynál nehezebbek! Ahol a Weight mező NULL, azokat az értékeket ne vegyük figyelembe az átlag számításnál!
+
+SELECT P.Name, P.Weight, P.SellStartDate, P.SellEndDate
+	FROM Production.Product P
+	WHERE P.Weight > (SELECT AVG(P2.Weight) FROM Production.Product P2 WHERE P2.Weight IS NOT NULL);
+
+Módosítsd a lekérdezést úgy, hogy csak azok a rekordok jelenjenek meg, melyeknél a SellEndDate későbbi, mint 2012. december 31! Ahol a SellEndDate mező NULL értékű, az azt jelenti, hogy ez a feltétel igaz, tehát ezek az adatsorok is legyenek benne az eredménytáblában. 
+
+SELECT P.Name, P.Weight, P.SellStartDate, P.SellEndDate
+	FROM Production.Product P
+	WHERE P.Weight > (SELECT AVG(P2.Weight) FROM Production.Product P2 WHERE P2.Weight IS NOT NULL)
+		AND (SellEndDate > '20121231' OR SellEndDate IS NULL);
