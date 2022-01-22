@@ -4,9 +4,15 @@
 	szerepel, ilyen formában
 	'név (productNumber)'
 */
-SELECT P.Name + ' (' + P.ProductNumber + ')', P.Color, P.ListPrice
+SELECT P.Name + ' (' + P.ProductNumber + ')', P.Color, P.ListPrice   -> kettő oszlopot tud összefűzni
 	FROM Production.Product P
 	WHERE P.ListPrice IS NOT NULL;
+
+
+SELECT ProductID, Name + ' (' + ProductNumber + ')' , YEAR(SellStartDate), -> csak a YEAR-t jeleníti meg a zárójeles technikával
+	ListPrice - StandardCost
+FROM Production.Product;
+
 
 /* Számokkal kapcsolatos műveleteket is lehet használni kifejezésekben:
 	+ összeadás

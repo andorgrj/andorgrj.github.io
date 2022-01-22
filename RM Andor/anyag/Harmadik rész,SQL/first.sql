@@ -9,6 +9,7 @@ ALTER TABLE - modifies a table
 DROP TABLE - deletes a table
 CREATE INDEX - creates an index (search key)
 DROP INDEX - deletes an index
+COALESCE - első olyan értéket adja vissza ami nem null
 
 DISTINCT    - SELECT different values 
 
