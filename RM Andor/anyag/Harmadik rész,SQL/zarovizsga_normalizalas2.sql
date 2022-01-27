@@ -2,13 +2,13 @@ USE ExamSajat
 -- ------------------------------------------------------------------------------
 
 -- 2. Feladat 
--- Adott az alábbi nem normalizált tábla (NonNormalMovie)
--- Hozd 3. normál formába és készítsd el a megfelelõ táblákat hozzá
--- Minden táblán legyen elsõdleges kulcs (Primary key), kivéve az esetleges kapocsolótáblákon 
+-- Adott az alÃ¡bbi nem normalizÃ¡lt tÃ¡bla (NonNormalMovie)
+-- Hozd 3. normÃ¡l formÃ¡ba Ã©s kÃ©szÃ­tsd el a megfelelÅ‘ tÃ¡blÃ¡kat hozzÃ¡
+-- Minden tÃ¡blÃ¡n legyen elsÅ‘dleges kulcs (Primary key), kivÃ©ve az esetleges kapocsolÃ³tÃ¡blÃ¡kon 
 -- 12 pont
--- Készítsd el az idegen kulcs (Foreign key) - elsõdleges kulcs párokat (5 pont)
--- Készítsd el a kész táblák összekapcsolt lekérdezését (4 pont)
--- Összesen: 20 pont
+-- KÃ©szÃ­tsd el az idegen kulcs (Foreign key) - elsÅ‘dleges kulcs pÃ¡rokat (5 pont)
+-- KÃ©szÃ­tsd el a kÃ©sz tÃ¡blÃ¡k Ã¶sszekapcsolt lekÃ©rdezÃ©sÃ©t (4 pont)
+-- Ã¶sszesen: 20 pont
 
 CREATE TABLE NonNormalMovie (
 	FilmTitle nvarchar(50),
@@ -16,28 +16,28 @@ CREATE TABLE NonNormalMovie (
 	Genre nvarchar(200)
 )
 INSERT INTO NonNormalMovie VALUES
-('Remény rabjai','Tim Robbins, Morgan Freeman','Dráma'),
-('Nagy ugrás','Tim Robbins, Paul Newman','Dráma, Vigjáték'),
-('A nagy balhé','Paul Newman, Robert Redford','Dráma, Vígjáték, Krimi')
+('Remï¿½ny rabjai','Tim Robbins, Morgan Freeman','Drï¿½ma'),
+('Nagy ugrï¿½s','Tim Robbins, Paul Newman','Drï¿½ma, Vigjï¿½tï¿½k'),
+('A nagy balhï¿½','Paul Newman, Robert Redford','Drï¿½ma, Vï¿½gjï¿½tï¿½k, Krimi')
 
 SELECT * FROM NonNormalMovie
 
--- Javítókulcs:
--- 2 pont - Észreveszi az N:M kapcsolatot és kiemeli (Film - Actor)
--- 2 pont - Észreveszi az N:M kapcsolatot és kiemeli (Film - Genre)
--- 1 pont/jó tábla - Elkészíti a táblákat - táblánként 1 pont
--- 2 pont - A táblákban van elsõdleges kulcs
--- 5 pont - Elkészíti az idegen kulcsokat
--- 4 pont - Elkészití az összekapcsolt lekérdezést
+-- Javï¿½tï¿½kulcs:
+-- 2 pont - ï¿½szreveszi az N:M kapcsolatot ï¿½s kiemeli (Film - Actor)
+-- 2 pont - ï¿½szreveszi az N:M kapcsolatot ï¿½s kiemeli (Film - Genre)
+-- 1 pont/jï¿½ tï¿½bla - Elkï¿½szï¿½ti a tï¿½blï¿½kat - tï¿½blï¿½nkï¿½nt 1 pont
+-- 2 pont - A tï¿½blï¿½kban van elsï¿½dleges kulcs
+-- 5 pont - Elkï¿½szï¿½ti az idegen kulcsokat
+-- 4 pont - Elkï¿½szitï¿½ az ï¿½sszekapcsolt lekï¿½rdezï¿½st
 
--- Megoldás adatfeltöltéssel
+-- MegoldÃ¡s adatfeltÃ¶ltÃ©ssel
 
 CREATE TABLE Film (
 	FilmID INT IDENTITY(1,1),
 	Title NVARCHAR(50),
 	CONSTRAINT PK_FilmID PRIMARY KEY (FilmID)
 )
-INSERT INTO Film (Title) VALUES ('Remény rabjai'),('Nagy ugrás'),('A nagy balhé')
+INSERT INTO Film (Title) VALUES ('RemÃ©ny rabjai'),('Nagy ugrÃ¡s'),('A nagy balhÃ©')
 
 CREATE TABLE Actor (
 	ActorID INT IDENTITY(1,1),
@@ -51,7 +51,7 @@ CREATE TABLE Genre (
 	Genre NVARCHAR(20),
 	CONSTRAINT PK_GenreID PRIMARY KEY (GenreID)
 )
-INSERT INTO Genre (Genre) VALUES ('Dráma'),('Vígjáték'),('Krimi')
+INSERT INTO Genre (Genre) VALUES ('DrÃ¡ma'),('VÃ­gjÃ¡tÃ©k'),('Krimi')
 
 CREATE TABLE FilmGenre (
 	FilmID INT,

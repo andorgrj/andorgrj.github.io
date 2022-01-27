@@ -2,12 +2,12 @@
 	USE Vendors
 -- Easy csoport feladatai
 -- E1. feladat (10 pont)
-	/* Készíts címlistát a szállítókról (vendorokról) az alábbi adatokkal:
+	/* Kï¿½szï¿½ts cï¿½mlistï¿½t a szï¿½llï¿½tï¿½krï¿½l (vendorokrï¿½l) az alï¿½bbi adatokkal:
 		a.	BusinessEntityID, 
 		b.	VendorName, 
-		c.	Vendor címe (Main office= 3-as AddressTypeID) az alábbi formában: CountryName, StateProvinceCode, PostalCode, City, AddressLine1, AddressLine2
-		d.	CreditRating (szövegesen: 1 = Superior, 2 = Excellent, 3 = Above average, 4 = Average, 5 = Below average)
-		e.	Rendezd a címlistát a vendor nevére. */
+		c.	Vendor cï¿½me (Main office= 3-as AddressTypeID) az alï¿½bbi formï¿½ban: CountryName, StateProvinceCode, PostalCode, City, AddressLine1, AddressLine2
+		d.	CreditRating (szï¿½vegesen: 1 = Superior, 2 = Excellent, 3 = Above average, 4 = Average, 5 = Below average)
+		e.	Rendezd a cï¿½mlistï¿½t a vendor nevï¿½re. */
 	SELECT V.BusinessEntityID VendorID, V.Name VendorName, CR.Name CountryName, SP.StateProvinceCode, 
 		A.City, A.AddressLine1, A.AddressLine2,
 		CHOOSE (V.CreditRating, 'Superior', 'Excellent', 'Above average', 'Average', 'Below average')
@@ -20,44 +20,45 @@
 	LEFT JOIN CountryRegion CR ON SP.CountryRegionCode = CR.CountryRegionCode 
 	ORDER BY 2
 
--- E2. feladat A korábbi 2-es feladat törölve, mert a kontakt személyek születésnapját nem tárolja az AdventureWorks, ezért a feladat nem megoldható. Bocs.
+-- E2. feladat A korï¿½bbi 2-es feladat tï¿½rï¿½lve, mert a kontakt szemï¿½lyek szï¿½letï¿½snapjï¿½t nem tï¿½rolja az AdventureWorks, ezï¿½rt a feladat nem megoldhatï¿½. Bocs.
 
 -- E3. feladat (10 pont) 
-	/* Listázd ki azokat a forgalmazott (SellEndDate üres) termékeket, amelyek jelenleg egyetlen szállítótól sem rendelhetõk. 
-		Megjelenítendõ mezõk: a termék neve, termékszáma (ProductNumber), listaára (ListPrice). Rendezés a termék nevére történjen. */
-	SELECT P.Name ProductName, P.ProductNumber, P.ListPrice
-	FROM Product P
-	WHERE P.ProductID NOT IN (SELECT ProductID FROM ProductVendor) AND P.SellEndDate IS NULL
+	/* Listï¿½zd ki azokat a forgalmazott (SellEndDate ï¿½res) termï¿½keket, amelyek jelenleg egyetlen szï¿½llï¿½tï¿½tï¿½l sem rendelhetï¿½k. 
+		Megjelenï¿½tendï¿½ mezï¿½k: a termï¿½k neve, termï¿½kszï¿½ma (ProductNumber), listaï¿½ra (ListPrice). Rendezï¿½s a termï¿½k nevï¿½re tï¿½rtï¿½njen. */
+	SELECT P.Name ProductName, P.ProductNumber, P.ListPrice, P.SellEndDate
+	FROM Production.Product P
+	WHERE P.ProductID NOT IN (SELECT ProductID FROM Purchasing.ProductVendor) AND P.SellEndDate IS NULL
 	ORDER BY 1
 	
 -- E4. feladat (10 pont) 
-	/* Készíts listát, amiben össze lehet vetni az egyes szállítási módok (ShipMethod) esetén a szállítási költségeket (Freight). 
-	A szállítói rendeléseket (PurchaseOrder) a szállítási mód (ShipMethod), azon belül évente és havonta (ShipDate alapján) kell összegezni. 
-	A megjelenítendõ adatok:
-		a.	A szállítási mód neve (Purchasing.ShipMethod.Name)
-		b.	Év, hónap
-		c.	Összes szállítási költség (Freight)
-		d.	Összes termékköltség (SubTotal)
-		e.	Az elõzõ kettõ alapján a szállítási költség százalékos értéke */
+	/* Kï¿½szï¿½ts listï¿½t, amiben ï¿½ssze lehet vetni az egyes szï¿½llï¿½tï¿½si mï¿½dok (ShipMethod) esetï¿½n a szï¿½llï¿½tï¿½si kï¿½ltsï¿½geket (Freight). 
+	A szï¿½llï¿½tï¿½i rendelï¿½seket (PurchaseOrder) a szï¿½llï¿½tï¿½si mï¿½d (ShipMethod), azon belï¿½l ï¿½vente ï¿½s havonta (ShipDate alapjï¿½n) kell ï¿½sszegezni. 
+	A megjelenï¿½tendï¿½ adatok:
+		a.	A szï¿½llï¿½tï¿½si mï¿½d neve (Purchasing.ShipMethod.Name)
+		b.	ï¿½v, hï¿½nap
+		c.	ï¿½sszes szï¿½llï¿½tï¿½si kï¿½ltsï¿½g (Freight)
+		d.	ï¿½sszes termï¿½kkï¿½ltsï¿½g (SubTotal)
+		e.	Az elï¿½zï¿½ kettï¿½ alapjï¿½n a szï¿½llï¿½tï¿½si kï¿½ltsï¿½g szï¿½zalï¿½kos ï¿½rtï¿½ke */
 	SELECT SM.Name ShipMethodName, YEAR(POH.OrderDate) OrderYear, MONTH(POH.OrderDate) OrderMonth,
 		SUM(POH.Freight), SUM(POH.SubTotal), SUM(POH.Freight) * 100 / SUM(POH.SubTotal) FreightPercent
-	FROM PurchaseOrderHeader POH
-	INNER JOIN ShipMethod SM ON POH.ShipMethodID = SM.ShipMethodID 
+	FROM Purchasing.PurchaseOrderHeader POH
+	INNER JOIN Purchasing.ShipMethod SM ON POH.ShipMethodID = SM.ShipMethodID 
 	GROUP BY SM.Name, YEAR(POH.OrderDate), MONTH(POH.OrderDate)
 	ORDER BY 1, 2, 3
 	GO
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Hard csoport feladatai
 -- H1. feladat (15 pont) 
-	/* Listázd ki a termékeket és a szállítókat úgy, hogy minden egyes termékhez csak egy szállító jelenjen meg. 
-	   Csak az aktív szállítókat vedd figyelembe (ActiveFlag=1). 
-	   Ha egy termékhez nincs szállító, akkor az eredményben a szállító résznél NULL jelenik meg minden oszlopban. 
-	   Ha több szállító is lenne egy termékhez, akkor a szállító által ajánlott StandardPrice döntsön 
-	   (nyilván úgy, hogy a legolcsóbb árú vendor legyen feltüntetve az adott terméknél). 
-	   A megjelenítendõ mezõk:
-			a)	Vendor kódja (BusinessEntityID) és neve (Name)
-			b)	A termék kódja (ProductID), neve (Name) és termékszáma (ProductNumber)
-			c)	A vendor által adott ár (StandardPrice)
-	   Rendezés: a termék neve. */
+	/* Listï¿½zd ki a termï¿½keket ï¿½s a szï¿½llï¿½tï¿½kat ï¿½gy, hogy minden egyes termï¿½khez csak egy szï¿½llï¿½tï¿½ jelenjen meg. 
+	   Csak az aktï¿½v szï¿½llï¿½tï¿½kat vedd figyelembe (ActiveFlag=1). 
+	   Ha egy termï¿½khez nincs szï¿½llï¿½tï¿½, akkor az eredmï¿½nyben a szï¿½llï¿½tï¿½ rï¿½sznï¿½l NULL jelenik meg minden oszlopban. 
+	   Ha tï¿½bb szï¿½llï¿½tï¿½ is lenne egy termï¿½khez, akkor a szï¿½llï¿½tï¿½ ï¿½ltal ajï¿½nlott StandardPrice dï¿½ntsï¿½n 
+	   (nyilvï¿½n ï¿½gy, hogy a legolcsï¿½bb ï¿½rï¿½ vendor legyen feltï¿½ntetve az adott termï¿½knï¿½l). 
+	   A megjelenï¿½tendï¿½ mezï¿½k:
+			a)	Vendor kï¿½dja (BusinessEntityID) ï¿½s neve (Name)
+			b)	A termï¿½k kï¿½dja (ProductID), neve (Name) ï¿½s termï¿½kszï¿½ma (ProductNumber)
+			c)	A vendor ï¿½ltal adott ï¿½r (StandardPrice)
+	   Rendezï¿½s: a termï¿½k neve. */
 	SELECT VendorID, VendorName, ProductID, ProductName, ProductNumber, StandardPrice
 	FROM (
 	SELECT V.BusinessEntityID VendorID, V.Name VendorName, P.ProductID, P.Name ProductName, P.ProductNumber, PV.StandardPrice,
@@ -69,20 +70,20 @@
 	ORDER BY ProductName 
 
 -- H2. feladat (15 pont) 
-	/* Gyûjtsd ki egy paraméterként megadott nap vevõi rendelései alapján azt, hogy melyik termékbõl hány darabra van szükség. 
-	   A kigyûjtött adatok alapján készíts egy szállítói rendelés ajánlást azokról a termékekrõl, ahol van szállító. 
-	   Ha esetleg a rendelni kívánt mennyiség nincs a MinOrderQty és a MaxOrderQty között, akkor a WarningMsg oszlopban jelenjen meg, 
-	   hogy „Túl kevés mennyiség”, illetve „Túl sok mennyiség”.
-	   Megjelenítendõ adatok:
-			a)	A termék kódja (ProductID), neve (Name) és termékszáma (ProductNumber)
-			b)	Vendor kódja (BusinessEntityID) és neve (Name)
-			c)	Rendelni kívánt darabszám
-			d)	A vendor által adott ár (StandardPrice)
-			e)	A vevõi rendelés alapján kalkulált átlagár
-			f)	Az adott tétel profitja (illetve vesztesége) a darabszámot is figyelembe véve
-			g)	Mikorra ér ide (AverageLeadTime alapján)
-			h)	WarningMsg: Mennyiségi problémák üzenete, illetve vendor nélkül a „Gyártás szükséges” üzenet
-	   Rendezés: a termék nevére */
+	/* Gyï¿½jtsd ki egy paramï¿½terkï¿½nt megadott nap vevï¿½i rendelï¿½sei alapjï¿½n azt, hogy melyik termï¿½kbï¿½l hï¿½ny darabra van szï¿½ksï¿½g. 
+	   A kigyï¿½jtï¿½tt adatok alapjï¿½n kï¿½szï¿½ts egy szï¿½llï¿½tï¿½i rendelï¿½s ajï¿½nlï¿½st azokrï¿½l a termï¿½kekrï¿½l, ahol van szï¿½llï¿½tï¿½. 
+	   Ha esetleg a rendelni kï¿½vï¿½nt mennyisï¿½g nincs a MinOrderQty ï¿½s a MaxOrderQty kï¿½zï¿½tt, akkor a WarningMsg oszlopban jelenjen meg, 
+	   hogy ï¿½Tï¿½l kevï¿½s mennyisï¿½gï¿½, illetve ï¿½Tï¿½l sok mennyisï¿½gï¿½.
+	   Megjelenï¿½tendï¿½ adatok:
+			a)	A termï¿½k kï¿½dja (ProductID), neve (Name) ï¿½s termï¿½kszï¿½ma (ProductNumber)
+			b)	Vendor kï¿½dja (BusinessEntityID) ï¿½s neve (Name)
+			c)	Rendelni kï¿½vï¿½nt darabszï¿½m
+			d)	A vendor ï¿½ltal adott ï¿½r (StandardPrice)
+			e)	A vevï¿½i rendelï¿½s alapjï¿½n kalkulï¿½lt ï¿½tlagï¿½r
+			f)	Az adott tï¿½tel profitja (illetve vesztesï¿½ge) a darabszï¿½mot is figyelembe vï¿½ve
+			g)	Mikorra ï¿½r ide (AverageLeadTime alapjï¿½n)
+			h)	WarningMsg: Mennyisï¿½gi problï¿½mï¿½k ï¿½zenete, illetve vendor nï¿½lkï¿½l a ï¿½Gyï¿½rtï¿½s szï¿½ksï¿½gesï¿½ ï¿½zenet
+	   Rendezï¿½s: a termï¿½k nevï¿½re */
 
 	DECLARE @ActDate date = '20130921'
 	; WITH DailyQty AS
@@ -94,24 +95,24 @@
 	SELECT P.ProductID, P.Name ProductName, P.ProductNumber, V.BusinessEntityID VendorID, V.Name VendorName, 
 		D.TotalQty, D.AvgPrice,	PV.StandardPrice, D.TotalQty * (D.AvgPrice - PV.StandardPrice) Profit, PV.AverageLeadTime,
 		PV.MinOrderQty, PV.MaxOrderQty,
-		CASE WHEN D.TotalQty < PV.MinOrderQty THEN 'Túl kevés mennyiség'
-			 WHEN D.TotalQty > PV.MaxOrderQty THEN 'Túl sok mennyiség'
-			 WHEN PV.ProductID IS NULL THEN 'Gyártás szükséges' END WarningMsg
+		CASE WHEN D.TotalQty < PV.MinOrderQty THEN 'Tï¿½l kevï¿½s mennyisï¿½g'
+			 WHEN D.TotalQty > PV.MaxOrderQty THEN 'Tï¿½l sok mennyisï¿½g'
+			 WHEN PV.ProductID IS NULL THEN 'Gyï¿½rtï¿½s szï¿½ksï¿½ges' END WarningMsg
 	FROM Product P
 	INNER JOIN DailyQty D ON P.ProductID = D.ProductID 
 	LEFT JOIN ProductVendor PV ON P.ProductID = PV.ProductID
 	LEFT JOIN Vendor V ON PV.BusinessEntityID = V.BusinessEntityID AND V.ActiveFlag = 1
 
 -- 3. feladat (15 pont)
-	/* Készíts listát arról, hogy a szállító felé elküldött rendelésekben (PurchaseOrder) az egyes kereskedõk (SalesPersonID) éves bontásban 
-	   hány olyan rendelést vettek fel, amiben legalább egy komponens szerepelt (azaz volt benne Components kategóriájú termék).
-	   (Az eredeti feladatkiírásban bicikli szerepelt, de az adatok alapján egyetlen biciklit sem rendelnek szállítóktól, 
-	   hanem maguk gyártják a szállítóktól beszerzett komponensek összeszerelésével.)
-	   Az elõállítandó oszlopok:
-			a)	BusinessEntityID (PurchaseOrderHeader.SalesPersonID alapján)
-			b)	PersonName (a LastName, FirstName és a MiddleName alapján)
-			c)	Év (OrderDate alapján),
-			d)	Szállítói rendelések darabszáma */
+	/* Kï¿½szï¿½ts listï¿½t arrï¿½l, hogy a szï¿½llï¿½tï¿½ felï¿½ elkï¿½ldï¿½tt rendelï¿½sekben (PurchaseOrder) az egyes kereskedï¿½k (SalesPersonID) ï¿½ves bontï¿½sban 
+	   hï¿½ny olyan rendelï¿½st vettek fel, amiben legalï¿½bb egy komponens szerepelt (azaz volt benne Components kategï¿½riï¿½jï¿½ termï¿½k).
+	   (Az eredeti feladatkiï¿½rï¿½sban bicikli szerepelt, de az adatok alapjï¿½n egyetlen biciklit sem rendelnek szï¿½llï¿½tï¿½ktï¿½l, 
+	   hanem maguk gyï¿½rtjï¿½k a szï¿½llï¿½tï¿½ktï¿½l beszerzett komponensek ï¿½sszeszerelï¿½sï¿½vel.)
+	   Az elï¿½ï¿½llï¿½tandï¿½ oszlopok:
+			a)	BusinessEntityID (PurchaseOrderHeader.SalesPersonID alapjï¿½n)
+			b)	PersonName (a LastName, FirstName ï¿½s a MiddleName alapjï¿½n)
+			c)	ï¿½v (OrderDate alapjï¿½n),
+			d)	Szï¿½llï¿½tï¿½i rendelï¿½sek darabszï¿½ma */
 	SELECT CONCAT(E.LastName, ' ' + E.MiddleName, ', ' + E.FirstName) PersonName, YEAR(SOH.OrderDate), 
 		COUNT(DISTINCT SOH.PurchaseOrderID) NoOfComponentsOrders
 	FROM PurchaseOrderDetail SOD
@@ -124,17 +125,17 @@
 	ORDER BY 1,2
 
 -- 4. feladat (15 pont)
-	/* Készíts lekérdezést, ami kereskedõnként (SalesPersonID), termékkategóriánként, azon belül évente adja össze 
-	   a szállítói rendelések értékét (PurchaseOrderDetail.LineTotal alapján). 
-	   Külön szeretnék látni a magasabbra rangsorolt vendorok (CreditRating<=2) és az alacsonyabbra rangsorolt vendorok (CreditRating>2) rendeléseit.
-	   A megjelenítendõ mezõk:
-			a)	BusinessEntityID (PurchaseOrderHeader.SalesPersonID alapján)
-			b)	PersonName (a LastName, FirstName és a MiddleName alapján)
-			c)	Év (OrderDate alapján),
-			d)	Termékkategória neve,
-			e)	Jobb szállítók (CreditRating<=2) rendelési értéke (LineTotal)
-			f)	Gyengébb szállítók (CreditRating>2) rendelési értéke (LineTotal)
-			g)	Teljes forgalom – a CreditRating-tõl függetlenül */
+	/* Kï¿½szï¿½ts lekï¿½rdezï¿½st, ami kereskedï¿½nkï¿½nt (SalesPersonID), termï¿½kkategï¿½riï¿½nkï¿½nt, azon belï¿½l ï¿½vente adja ï¿½ssze 
+	   a szï¿½llï¿½tï¿½i rendelï¿½sek ï¿½rtï¿½kï¿½t (PurchaseOrderDetail.LineTotal alapjï¿½n). 
+	   Kï¿½lï¿½n szeretnï¿½k lï¿½tni a magasabbra rangsorolt vendorok (CreditRating<=2) ï¿½s az alacsonyabbra rangsorolt vendorok (CreditRating>2) rendelï¿½seit.
+	   A megjelenï¿½tendï¿½ mezï¿½k:
+			a)	BusinessEntityID (PurchaseOrderHeader.SalesPersonID alapjï¿½n)
+			b)	PersonName (a LastName, FirstName ï¿½s a MiddleName alapjï¿½n)
+			c)	ï¿½v (OrderDate alapjï¿½n),
+			d)	Termï¿½kkategï¿½ria neve,
+			e)	Jobb szï¿½llï¿½tï¿½k (CreditRating<=2) rendelï¿½si ï¿½rtï¿½ke (LineTotal)
+			f)	Gyengï¿½bb szï¿½llï¿½tï¿½k (CreditRating>2) rendelï¿½si ï¿½rtï¿½ke (LineTotal)
+			g)	Teljes forgalom ï¿½ a CreditRating-tï¿½l fï¿½ggetlenï¿½l */
 	SELECT E.BusinessEntityID PersonID, CONCAT(E.LastName, ' ' + E.MiddleName, ', ' + E.FirstName) PersonName,
 		C.Name CategoryName, YEAR(SOH.OrderDate) DueYear,
 		SUM(IIF(V.CreditRating <= 2, SOD.LineTotal, NULL)) SalesBV,

@@ -67,12 +67,51 @@ SELECT  L.Name AS LocationName,
 		ON PSC.ProductCategoryID = PC.ProductCategoryID
 	GROUP BY L.Name, PC.Name;
 
+/*Jelenítsd meg a Person táblából a személyek neveit “Title FirstName MiddleName LastName” formátumban. 
+Figyelj arra, hogy több helyen NULL értéket tárol a Title, vagy a MiddleName mező, ekkor ezt megfelelően kezeld, ne tartalmazzon felesleges szóközöket a végeredmény!*/ 
 
+SELECT CONCAT(P.Title, ' ' + FirstName, ' ' + MiddleName, ' ' + LastName)
+	FROM Person.Person P;
 
+/*Jelenítsd meg azon termékek Name, Weight, SellStartDate és SellEndDate adatait, melyek az átlag súlynál nehezebbek! 
+Ahol a Weight mező NULL, azokat az értékeket ne vegyük figyelembe az átlag számításnál!*/
 
+SELECT P.Name, P.Weight, P.SellStartDate, P.SellEndDate
+	FROM Production.Product P
+	WHERE P.Weight > (SELECT AVG(P2.Weight) FROM Production.Product P2 WHERE P2.Weight IS NOT NULL);
 
+/*Módosítsd a lekérdezést úgy, hogy csak azok a rekordok jelenjenek meg, melyeknél a SellEndDate későbbi, mint 2012. december 31! 
+Ahol a SellEndDate mező NULL értékű, az azt jelenti, hogy ez a feltétel igaz, tehát ezek az adatsorok is legyenek benne az eredménytáblában.*/
 
+SELECT P.Name, P.Weight, P.SellStartDate, P.SellEndDate
+	FROM Production.Product P
+	WHERE P.Weight > (SELECT AVG(P2.Weight) FROM Production.Product P2 WHERE P2.Weight IS NOT NULL)
+		AND (SellEndDate > '20121231' OR SellEndDate IS NULL);
 
+/*Készíts lekérdezést, amely kigyűjti azon termékek azonosítóját (ProductID), nevét (Name), alkategória azonosítóját és nevét (ProductSubcategoryID, Name), melyek az alkategóriájuk minimum áránál legalább 25%-al drágábbak!*/
+
+SELECT P.ProductID, P.Name, PS.ProductSubcategoryID, PS.Name
+	FROM Production.Product P
+	INNER JOIN Production.ProductSubcategory PS ON P.ProductSubcategoryID = PS.ProductSubcategoryID
+	WHERE P.ListPrice >= (SELECT Min(P2.ListPrice)
+							FROM Production.Product P2
+							WHERE P2.ProductSubcategoryID = P.ProductSubcategoryID) * 1.25;
+
+/*Készíts lekérdezést a SalesOrderHeader tábla CustomerID és SalesPersonID mezője alapján! 
+Első körben arra vagyunk kíváncsiak, hogy egy SalesPersonID-hoz hány CustomerID tartozik.*/
+
+SELECT SOH.SalesPersonID, COUNT(1) AS NumberOfCustomers
+	FROM Sales.SalesOrderHeader SOH
+	GROUP BY SOH.SalesPersonID;
+
+/*Második körben számold össze, hogy hány eladó (SalesPerson) van, akihez 1, 2, 3, stb. CustomerID tartozik!*/
+
+SELECT X.NumberOfCustomers, COUNT(1) NumberOfSalesPerson
+FROM (SELECT SOH.SalesPersonID, COUNT(1) NumberOfCustomers
+	FROM Sales.SalesOrderHeader SOH
+	GROUP BY SOH.SalesPersonID) X
+GROUP BY X.NumberOfCustomers
+ORDER BY X.NumberOfCustomers;
 
 
 

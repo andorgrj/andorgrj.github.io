@@ -13,6 +13,10 @@ SELECT ProductID, Name + ' (' + ProductNumber + ')' , YEAR(SellStartDate), -> cs
 	ListPrice - StandardCost
 FROM Production.Product;
 
+SELECT ST.Name, AVG(ST.SalesLastyear) AverageSaleslastyear
+	FROM Sales.SalesTerritory ST
+	GROUP BY ST.Name HAVING AVG(ST.SalesLastYear) >= 5000000;
+
 
 /* Számokkal kapcsolatos műveleteket is lehet használni kifejezésekben:
 	+ összeadás
