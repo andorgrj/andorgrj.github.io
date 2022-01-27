@@ -11,14 +11,14 @@ USE ExamSajat
 -- összesen: 20 pont
 
 CREATE TABLE NonNormalMovie (
-	FilmTitle nvarchar(50),
+	Film nvarchar(50),
 	Actor nvarchar(200),
 	Genre nvarchar(200)
 )
 INSERT INTO NonNormalMovie VALUES
-('Rem�ny rabjai','Tim Robbins, Morgan Freeman','Dr�ma'),
-('Nagy ugr�s','Tim Robbins, Paul Newman','Dr�ma, Vigj�t�k'),
-('A nagy balh�','Paul Newman, Robert Redford','Dr�ma, V�gj�t�k, Krimi')
+('Remény rabjai','Tim Robbins, Morgan Freeman','Dráma'),
+('Nagy ugrás','Tim Robbins, Paul Newman','Dráma, Vigjáték'),
+('A nagy balhé','Paul Newman, Robert Redford','Dráma, Vígjáték, Krimi')
 
 SELECT * FROM NonNormalMovie
 
@@ -26,9 +26,9 @@ SELECT * FROM NonNormalMovie
 -- 2 pont - �szreveszi az N:M kapcsolatot �s kiemeli (Film - Actor)
 -- 2 pont - �szreveszi az N:M kapcsolatot �s kiemeli (Film - Genre)
 -- 1 pont/j� t�bla - Elk�sz�ti a t�bl�kat - t�bl�nk�nt 1 pont
--- 2 pont - A t�bl�kban van els�dleges kulcs
+-- 2 pont - A t�bl�kban van elsődleges kulcs
 -- 5 pont - Elk�sz�ti az idegen kulcsokat
--- 4 pont - Elk�szit� az �sszekapcsolt lek�rdez�st
+-- 4 pont - Elk�szit� az összekapcsolt lekérdezést
 
 -- Megoldás adatfeltöltéssel
 

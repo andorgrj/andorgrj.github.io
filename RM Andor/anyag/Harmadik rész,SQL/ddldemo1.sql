@@ -1,10 +1,10 @@
--- DB létrehozása
+-- DB lï¿½trehozï¿½sa
 CREATE DATABASE DemoDB 
 
--- DB törlés
+-- DB tï¿½rlï¿½s
 -- DROP DATABASE DemoDB
 
--- DB változtatás
+-- DB vï¿½ltoztatï¿½s
 -- ALTER DATABASE DemoDB
 
 USE DemoDB
@@ -19,7 +19,7 @@ CREATE TABLE Elsotabla (
 
 DROP TABLE Elsotabla
 
--- Megszorítások
+-- Megszorï¿½tï¿½sok
 -- NOT NULL, DEFAULT, UNIQUE, CHECK
 
 CREATE TABLE Elsotabla (
@@ -35,7 +35,7 @@ CREATE TABLE Elsotabla (
 )
 
 -- --------------------------------------------
--- tábla elsõdleges kulccsal
+-- tï¿½bla elsï¿½dleges kulccsal
 CREATE TABLE Elsotabla (
 	ElsotablaID int,
 	Nev nvarchar(20),
@@ -48,9 +48,9 @@ CREATE TABLE Elsotabla (
 
 
 -- ------------------------------------------------
--- tábla automatikusan növekvõ elsõdleges kulccsal
+-- tï¿½bla automatikusan nï¿½vekvï¿½ elsï¿½dleges kulccsal
 CREATE TABLE Elsotabla (
-	ElsotablaID int IDENTITY (1000,1),
+	ElsotablaID int IDENTITY (1000,1), -- az identity hasznÃ¡latÃ¡val nÃ¶veli a kulcsot, (1,1 jelenti, hogy mennyitÅ‘l kezdÅ‘dik a szÃ¡mozÃ¡s Ã¡s mennyivel nÅ‘)
 	Nev nvarchar(20),
 	Suly float,
 	Ido Datetime
@@ -67,7 +67,7 @@ CREATE TABLE Elsotabla (
 	CONSTRAINT PK_Elsotabla PRIMARY KEY (ElsotablaID)	
 )
 
--- táblák összekapcsolása idegen kulcsokkal 1:N kapcsolat
+-- tï¿½blï¿½k ï¿½sszekapcsolï¿½sa idegen kulcsokkal 1:N kapcsolat
 
 CREATE TABLE Elsotabla (
 	ElsotablaID int IDENTITY (1,1),
@@ -112,7 +112,7 @@ CREATE TABLE Masodiktabla (
 
 	CONSTRAINT PK_Masodiktabla PRIMARY KEY (MasodiktablaID)
 )
-INSERT INTO Masodiktabla VALUES ('Brokkoli'), ('Spenót'), ('Gumicukor')
+INSERT INTO Masodiktabla VALUES ('Brokkoli'), ('Spenï¿½t'), ('Gumicukor')
 
 
 CREATE TABLE NMTabla (
@@ -168,7 +168,7 @@ INSERT INTO Elsotabla VALUES (null, null, null)
 
 SELECT * FROM Elsotabla -- ORDER BY ElsotablaID DESC
 
-INSERT INTO Masodiktabla VALUES ('normális'),('sovány'),('tulsúlyos')
+INSERT INTO Masodiktabla VALUES ('normï¿½lis'),('sovï¿½ny'),('tulsï¿½lyos')
 
 SELECT * FROM Masodiktabla
 
@@ -179,11 +179,11 @@ UPDATE Elsotabla SET MasodiktablaID = 3 WHERE ElsotablaID = 3
 DROP TABLE Elsotabla, Masodiktabla
 
 -- ---------------------------------
--- tábla kapcsolat típusok
+-- tï¿½bla kapcsolat tï¿½pusok
 1:1 
 1:N
 N:1 
-N:M - kapcsolótáblát készítünk hozz
+N:M - kapcsolï¿½tï¿½blï¿½t kï¿½szï¿½tï¿½nk hozz
 -- ----------------------------------
 
 CREATE TABLE NonNormalMovie (
@@ -192,9 +192,9 @@ CREATE TABLE NonNormalMovie (
 	Genre nvarchar(200)
 )
 INSERT INTO NonNormalMovie VALUES
-('Remény rabjai','Tim Robbins, Morgan Freeman','Dráma'),
-('Nagy ugrás','Tim Robbins, Paul Newman','Dráma, Vigjáték'),
-('A nagy balhé','Paul Newman, Robert Redford','Dráma, Vígjáték, Krimi')
+('Remï¿½ny rabjai','Tim Robbins, Morgan Freeman','Drï¿½ma'),
+('Nagy ugrï¿½s','Tim Robbins, Paul Newman','Drï¿½ma, Vigjï¿½tï¿½k'),
+('A nagy balhï¿½','Paul Newman, Robert Redford','Drï¿½ma, Vï¿½gjï¿½tï¿½k, Krimi')
 
 SELECT * FROM NonNormalMovie
 
