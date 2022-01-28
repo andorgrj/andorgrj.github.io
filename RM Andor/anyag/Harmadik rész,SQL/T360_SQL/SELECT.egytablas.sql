@@ -1,25 +1,25 @@
--- T·bla nÈlk¸li skal·r SELECT
+-- T√°bla n√©lk√ºli skal√°r SELECT
 SELECT 'Training360', 'Budapest', 11
 
--- A t·bla ˆsszes sora
+-- A t√°bla √∂sszes sora
 SELECT ProductID, Name, Color, ListPrice
 FROM Production.Product
 
--- A t·bla ˆsszes sora Ès ˆsszes oszlopa
+-- A t√°bla √∂sszes sora √©s √∂sszes oszlopa
 SELECT *
 FROM Production.Product
 
--- KifejezÈsek haszn·lata
-SELECT ProductID, Name + ' (' + ProductNumber + ')', YEAR(SellStartDate), 
+-- Kifejez√©sek haszn√°lata
+SELECT ProductID, Name + ' (' + ProductNumber + ')', YEAR(SellStartDate), -- itt a sellstartdate-b≈ël csak a year kell
 	ListPrice - StandardCost 
 FROM Production.Product
 
--- Alias alkalmaz·sa a kifejezÈseknÈl
+-- Alias alkalmaz√°sa a kifejez√©sekn√©l
 SELECT ProductID, Name + ' (' + ProductNumber + ')' AS ProductName, YEAR(SellStartDate) AS SellStartYear,
 	ListPrice - StandardCost AS Revenue
 FROM Production.Product
 
--- ALias alkalmaz·sa a t·bl·ra (most m·r az AS nÈlk¸l)
+-- ALias alkalmaz√°sa a t√°bl√°ra (most m√°r az AS n√©lk√ºl)
 SELECT P.ProductID, P.Name + ' (' + P.ProductNumber + ')' ProductName, YEAR(P.SellStartDate) SellStartYear,
 	P.ListPrice - P.StandardCost Revenue
 FROM Production.Product P

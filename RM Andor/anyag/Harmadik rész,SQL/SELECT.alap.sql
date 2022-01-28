@@ -18,6 +18,14 @@ SELECT ST.Name, AVG(ST.SalesLastyear) AverageSaleslastyear
 	GROUP BY ST.Name HAVING AVG(ST.SalesLastYear) >= 5000000;
 
 
+/*10 legdrágább fekete termék lekérdezése*/
+
+SELECT TOP (10) P.ProductID, P.Name, P.Color, P.Listprice
+FROM Production.Product P
+WHERE P.Color = 'Black'
+ORDER BY P.ListPrice DESC;
+
+
 /* Számokkal kapcsolatos műveleteket is lehet használni kifejezésekben:
 	+ összeadás
 	- kivonás
