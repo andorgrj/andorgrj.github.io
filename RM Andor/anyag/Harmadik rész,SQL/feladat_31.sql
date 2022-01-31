@@ -41,4 +41,13 @@ JOIN Sales.Customer AS C ON P.BusinessEntityID = C.PersonID
 JOIN Sales.SalesOrderHeader AS SOH ON C.CustomerID = SOH.CustomerID
 WHERE SOH.OrderDate BETWEEN '2012-04-01' AND '2013-12-31'
 GROUP BY CONCAT(P.FirstName,' ',P.LastName)
-ORDER BY TotalOrder DESC
+ORDER BY TotalOrder DESC;
+
+
+SELECT SOH.CustomerID, COUNT(SOH.CustomerID) AS 'Vásárlások száma',
+		SOD.ProductID, SUM(SOD.OrderQty) AS 'Vásárolt mennyiség'
+	FROM Sales.SalesOrderHeader SOH
+	INNER JOIN Sales.SalesOrderDetail SOD 
+		ON SOH.SalesOrderID = SOD.SalesOrderID
+	GROUP BY SOH.CustomerID, SOD.ProductID
+	ORDER BY 4 DESC;
