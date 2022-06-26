@@ -1,0 +1,18 @@
+git --version
+
+git init test-project
+
+git config --global init.defaultBranch main
+
+cd test-project
+
+git branch -m main
+
+git branch 
+
+git status
+
+vim hello.txt
+
+
+
