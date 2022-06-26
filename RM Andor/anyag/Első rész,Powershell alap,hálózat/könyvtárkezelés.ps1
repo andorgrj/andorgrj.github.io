@@ -135,7 +135,7 @@ If ($dontes -eq 0) {
     $konyvtarak | ForEach-Object {Write-Host $_.Name}
 }
 Else {
-    Write-Host "Faszt" -BackgroundColor DarkGreen
+    Write-Host "Ft" -BackgroundColor DarkGreen
 }
 
 

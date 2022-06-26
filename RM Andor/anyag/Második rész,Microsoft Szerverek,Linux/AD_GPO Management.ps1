@@ -21,13 +21,13 @@ https://hu.wikipedia.org/wiki/Csoporth%C3%A1zirend
 -----------------------------------------------------------------------------------------------------------
 Meghajtócsatlakoztatás
 
-Group and Policy Object -> New GPO -> pl PDrive -> jobb gomb/edit -> Preferencies/Windows Settings/Drive Map -> New Mapped Drive / Reconnect -> Location: \\gandorWS2019\Peldashare
-ha ez kész -> gpupdate/ force -> server és Win10 gépen
+Group Policy Object -> New GPO -> pl PDrive -> jobb gomb/edit -> Preferencies/Windows Settings/Drive Map -> New Mapped Drive / Reconnect -> Location: \\gandorWS2019\Peldashare
+ha ez kész -> gpupdate /force -> server és Win10 gépen
 
 -----------------------------------------------------------------------------------------------------------
 Shortcut - Ikon készítése
 
-Group and Policy Object -> New GPO -> pl PMIkon -> jobb gomb/edit -> Preferencies/Windows Settings/Shortcuts -> New Shortcut -> Location/targetpath and settings
+Group Policy Object -> New GPO -> pl PMIkon -> jobb gomb/edit -> Preferencies/Windows Settings/Shortcuts -> New Shortcut -> Location/targetpath and settings
 ha ez kész -> gpupdate/ force -> server és Win10 gépen
 
 -----------------------------------------------------------------------------------------------------------

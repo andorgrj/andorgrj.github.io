@@ -32,6 +32,8 @@ docker image pull nginx:1.21.5-alpine                                           
 docker run --name my-nginx-server -d nginx:1.21.5-alpine                                    - my nginx server nevet adok neki és futtatom szolgáltatásként a háttérben -d vel 
 docker exec -it my-nginx-server sh                                                          - inside terminal sh parancssal linux terminal a konténerbe belépve
 docker run --name my-nginx-server-w-port -p 60080:80 -d nginx:1.21.5-alpine                 - port megnyitása portátirányítással -> -p -vel lehet a portot beállítani
+docker container ls -q  -container id jeleníti meg
+docker container ls --filter "status=exited" - statusta szűrhet
 
 index fájl szerkesztése unix:
 

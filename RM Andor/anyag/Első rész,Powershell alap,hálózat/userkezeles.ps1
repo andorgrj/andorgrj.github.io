@@ -94,3 +94,12 @@ CSoportot fel tudunk venni csoport felhasználók közé
 $a = Get-LocalGroup -Name Felhasználók
 $a
 Add-LocalGroupMember -Group Ujcsoport1 -Member $a.Name
+
+
+Get-CimInstance -ClassName Win32_ComputerSystem -Property UserName
+
+Get-Ciminstance Win32_OperatingSystem | Select *memory*
+
+#8. Get-Process | Where-Object {$PSItem.Id -EQ 5100 -or $PSItem.Id -EQ 3988}
+# 7. valamit még selectelni kellene itt, de nem tudom mit 
+Resolve-DnsName -Server 8.8.8.8 -Name progmasters.hu -Type ALL
