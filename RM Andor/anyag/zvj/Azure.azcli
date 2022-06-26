@@ -1,0 +1,43 @@
+Azure
+
+A biztosított Azure fiókoddal kell bejelentkezned az Azure portálra és megoldanod az alábbi feladatokat. A feladat végeztével, a már ismertetett módon kell letöltened az Erőforráscsoportod sablonját, majd a letöltött .zip fájlban található kettő .json fájlt beadnod mint megoldást.
+
+Beadandó fájl neve:
+
+parameters.json
+template.json
+Összesen elérhető: 20 pont
+
+Fontos, hogy minden erőforrást csak és kizárólag a saját fiókodhoz hozzárendelt erőforráscsoportban hozz létre, máskülönben ezek nem kerülnek pontozásra!
+
+Amennyiben a feladatleírástól eltérő mennyiségű és/vagy méretű erőforrás(oka)t hozol létre, a feladat érvénytelennek minősül!
+
+Feladatok:
+
+4 pont - Hozz létre egy virtuális hálózatot, a következő paraméterekkel:
+régiója: West Europe
+elnevezése: "zarovizsga-userxx-vnet" (xx - a sorszámod)
+address: 10.xx.0.0/16 (xx - a sorszámod)
+subnet name: "zarovizsga-userxx-subnet1" (xx - a sorszámod)
+subnet: 10.xx.100.0/24 (xx - a sorszámod)
+subnet name: "zarovizsga-userxx-subnet2" (xx - a sorszámod)
+subnet: 10.xx.101.0/24 (xx - a sorszámod)
+2 pont - Hozz létre egy dinamikus publikus IP címet
+elnevezése: "zarovizsga-userxx-pip" (xx - a sorszámod)
+2 pont - Hozz létre egy Network Security Group-ot,
+elnevezése: "zarovizsga-userxx-nsg" (xx - a sorszámod)
+8 pont - Hozz létre egy VM-et a 4-6 lépésekben létrehozott komponensek (network, PIP, NGS) felhasználásával és a következő paraméterekkel:
+elnevezése: "zarovizsga-userxx-linux" (xx - a sorszámod)
+csatold a 10.xx.101.0/24 -es alhálózathoz. (xx - a sorszámod)
+Spot instance legyen
+VM mérete: Standard_DS1_v2
+OS: Ubuntu Server 20.04 LTS - Gen2
+admin user: amit a hozzáféréshez kaptál
+jelszava: amit a hozzáféréshez kaptál
+OS disk típus: Standard SSD vagy Standard HDD
+Adjál hozzá 2 címkét:
+vizsgazo : "saját neved"
+vizsga : "záróvizsga"
+1 pont - Nyisd ki az SSH portot a létrehozott virtuális géphez.
+2 pont - Tedd pingelhetővé a gépet NSG beállítással.
+1 pont - Állítsd le a létrehozott virtuális gépet.

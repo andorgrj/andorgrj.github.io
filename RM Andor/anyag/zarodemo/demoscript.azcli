@@ -1,0 +1,124 @@
+az login --use-device-code
+
+az group create -l westus -n andordemorg
+
+az configure --defaults group=andordemorg
+
+az config get
+
+az group list
+
+az network vnet create -g andordemorg --name vnet-WES `
+--address-prefix 172.16.0.0/16 `
+--subnet-name subnet-wes-01 `
+--location westus `
+--subnet-prefix 172.16.1.0/24
+
+
+az vm create --name cli4-vm `
+--image MicrosoftWindowsServer:WindowsServer:2019-Datacenter:latest `
+--size Standard_B1s `
+--authentication-type password `
+--admin-username linuxadmin `
+--admin-password linuxadmin.12345 `
+--nsg-rule RDP `
+--storage-sku StandardSSD_LRS `
+--vnet-name vnetus `
+--subnet default `
+--public-ip-address cli4-vm-publicip `
+--public-ip-sku Basic `
+--public-ip-address-allocation dynamic `
+--nic-delete-option Delete `
+--os-disk-delete-option Delete `
+--location westus
+
+
+az vm auto-shutdown -g andordemorg -n DC1 --time 1900
+
+New-PSDrive -Name "S" -PSProvider FileSystem -Root \\SPS\Shares -Persist
+New-PSDrive -Name "SShare" -PSProvider FileSystem -Root \\SPS\Shares
+
+New-SmbShare -path "C:\Shares" -Name "Shares" -FullAccess Everyone
+
+Get-WindowsFeature -Name FS-Resource-Manager, RSAT-FSRM-Mgmt
+Install-WindowsFeature -Name FS-Resource-Manager, RSAT-FSRM-Mgmt
+
+
+Get-FsrmQuota
+Get-FsrmQuotaTemplate
+New-FsrmQuota -Path "C:\Shares" -Description "limit usage to 1 GB." -Size 1GB
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Projektfeladat: Tartományi környezet létrehozása
+A környezetet Azure-ben hozd létre, vagy olyan környezetben ahol a későbbiekben be tudod mutatni
+Azureben használhatod a Tőlünk kapott hozzáférést. Ez esetben:
+Minden erőforrást a West Europe régióban hozz létre!
+Minden VM amit létrehozol Spot Instance legyen!
+Automatikusan álljon le a gép este 19:00-kor vagy csak használatkor kapcsold be
+Saját Azure hozzáférést is használhatsz, ez esetben ott és úgy hozod létre a környezetet, ahogy csak szeretnéd
+Lehetőség szerint minél több műveletet próbálj meg automatizálni, scriptből elkészteni.
+1 Hozz létre egy új virtuális hálózatot és subnetet az alábbi paraméterekkel:
+Hálózat: 172.16.0.0 / 255.255.0.0
+Subnet: 172.16.0.0 / 255.255.255.0 A későbbiekben minden gépet ebben a hálózatban / subnetben helyezz el!
+2 Hozzd létre egy domain controllert
+a/ Hozz létre egy virtuális gépet az alábbi paraméterekkel a frissen kialakított subnetben:
+Gépnév: DC1
+Image: Windows Server 2019 Gen2 GUI-val
+Standard D2as v4 (2 vcpus, 8 GiB memory), Spot instance - saját Azure fiók esetén te döntöd el
+Windows server backup szerepkör telepítése.
+b/ Az alábbi beállításokat eszközöld a DC-n:
+IP: 172.16.0.10 / 24
+Átjáró: amit az Azure DHCP osztott eredetileg.
+Ne feledd átállítani a gép IP címét az Azure felületen a hálózat beállításainál a hálózati kártyák IP címét
+c/ Active Directory telepítése
+A tartomány neve legyen: project.local
+d/ Szervezeti egységek létrehozása az alábbi struktúrában:
+project.local
+├─ PROJECT
+├─ Hallgatok
+├─ Oktatok
+├─ KliensGepek
+├─ Csoportok
+Hozz létre 2 user-t a Hallgatok OU-ban: Gipsz Jakab és Beton Béla
+Hozz létre 1 user-t az Oktatók OU-ban: Trainer (legyen benne a domain admin csoportban is)
+Hozz létre egy “oktatok” és egy “hallgatok” csoportot a Csoportok OU-ban. Értelem szerűen legyenek tagjai a megfelelő felhasználók.
+e/ DHCP server szerepkör telepítése
+Az alábbi beállítások szerint konfiguráld fel a szerepkört: - IP-t csak a 172.16.0.100 – 172.16.0.200 -es tartományban szórjon - DNS kiszolgálónak a DC címét ossza - Átjáró címének a hálózaton lévő az Azure átjáró címét ossza - Tartománynévként pedig “project.local”-t osszon
+
+f/ DNS server szerepkör további beállításai a következőek legyenek
+Legyen egy új zóna: akarmi.hu
+Legyenek felvéve az alábbi új A rekordok:
+akarmi.hu: 172.16.0.10
+valami.akarmi.hu: 172.16.0.10
+server.akarmi.hu: 172.16.0.10
+új CNAME rekordok:
+www.akarmi.hu: server.akarmi.hu
+mail.akarmi.hu: server.akarmi.hu
+3 Hozz létre egy fájlkiszolgálót
+a/ Hozz létre egy másik virtuális gépet az alábbi paraméterekkel:
+Gépnév: FS1
+Image: Windows Server Core 2019 Gen2
+Standard D2as v4 (2 vcpus, 8 GiB memory), Spot instance - saját Azure fiók esetén te döntöd el
+Legyen egy extra diszkje is későbbi adattárolás céljából
+4 GB
+Standard SSD LRS
+IP cím: 172.16.0.11 / 24
+Átjáró: amit az Azure DHCP oszt eredetileg.
+Legyen beléptetve a létrehozott domain-be
+Legyen telepítve fájlkiszolgáló szerepkör, deduplikációs szolgáltatás és File Server Resource Manager.
+b/ Az extra diszkkel kapcsolatos teendők:
+GPT típusú legyen és NTFS-re legyen formázva.
+Kvóta legyen beállítva 500 MB-ra userenként, 450 MB-nál figyelmeztessen.
+Az extra diszken az alábbi mappastruktúra és megosztási beállítsok legyenek beállítva:
+S:\Shares
+├─ Hallgatok hallgatok: módosítás, administrators: full
+├─ Oktatok oktatok: módosítás, administrators: full
+├─ Vizsga hallgatok: módosítás, oktatoks: olvasás, administrators: full
+├─ Users
+Mindegyik felhasználónak a Home könyvtár beállítása legyen a Z: betűjellel a \\FS1\Users\%username%
+3 Hozz létre egy Windows tartományi klienst
+Gépnév: W10Client
+Image: Windows 10 Pro
+Standard D2as v4 (2 vcpus, 8 GiB memory), Spot instance - saját Azure fiók esetén te döntöd el
+IP címnek 172.16.0.20-at adj és legyen a domain-be léptetve.
